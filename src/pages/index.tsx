@@ -11,77 +11,8 @@ export default function Home() {
 
   if (!hasMounted) return null;
 
-  //   const [inputs, setInputs] = useState({
-  //     id: "",
-  //     title: "",
-  //     difficulty: "",
-  //     category: "",
-  //     videoId: "",
-  //     link: "",
-  //     order: 0,
-  //     likes: 0,
-  //     dislikes: 0,
-  //   });
-
-  //   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //     setInputs({ ...inputs, [e.target.name]: e.target.value });
-  //   };
-
-  //   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-  //     const newInput = { ...inputs, order: Number(inputs.order) };
-  //     await setDoc(doc(firestore, "problems", inputs.id), newInput);
-  //   };
-  //   console.log(inputs);
-
   return (
     <>
-      {/* <form onSubmit={handleSubmit}>
-       <input onChange={handleChange} type="text" placeholder="id" name="id" />
-       <input
-        onChange={handleChange}
-        type="text"
-        placeholder="title"
-        name="title"
-      />
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="difficulty"
-        name="difficulty"
-      />
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="category"
-        name="category"
-      />
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="order"
-        name="order"
-      />
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="videoId"
-        name="videoId"
-      />
-      <input
-        onChange={handleChange}
-        type="text"
-        placeholder="link"
-        name="link"
-      />
-      <input
-        onChange={handleChange}
-        type="submit"
-        placeholder="submit"
-        className="cursor-pointer"
-      />
-	</form> */}
-
       <main className="bg-dark-layer-2 min-h-screen">
         <Topbar />
         <h1
