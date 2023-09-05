@@ -14,7 +14,7 @@ export const problems: Problem[] = [
     difficulty: "Easy",
     category: "Array",
     order: 1,
-    videoId: "8-k1C6ehKuw",
+    videoId: "UXDSeD9mN-k",
   },
   {
     id: "reverse-linked-list",
@@ -22,7 +22,7 @@ export const problems: Problem[] = [
     difficulty: "Hard",
     category: "Linked List",
     order: 2,
-    videoId: "",
+    videoId: "N_sUxfynLYrE9gyN",
   },
   {
     id: "jump-game",
@@ -30,7 +30,7 @@ export const problems: Problem[] = [
     difficulty: "Medium",
     category: "Dynamic Programming",
     order: 3,
-    videoId: "",
+    videoId: "Yan0cv2cLy8",
   },
   {
     id: "valid-parentheses",
@@ -38,7 +38,7 @@ export const problems: Problem[] = [
     difficulty: "Easy",
     category: "Stack",
     order: 4,
-    videoId: "xty7fr-k0TU",
+    videoId: "wkDfsKijrZ8",
   },
   {
     id: "search-a-2d-matrix",
@@ -46,6 +46,6 @@ export const problems: Problem[] = [
     difficulty: "Medium",
     category: "Binary Search",
     order: 5,
-    videoId: "ZfFl4torNg4",
+    videoId: "JXU4Akft7yk",
   },
 ];
