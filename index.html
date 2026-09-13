@@ -862,7 +862,7 @@
           <div class="mark">40</div>
           <div class="brand">
             <h1>Pattern sheet</h1>
-            <p>Saved on this device</p>
+            <p data-sync-status>saved on this device</p>
           </div>
         </div>
         <nav class="nav" id="nav-desk"></nav>
@@ -878,7 +878,7 @@
             <div class="progress-mini">
               <strong id="solved-count">0</strong
               ><span id="total-count"> / 0</span>
-              <span class="saved">saved locally</span>
+              <span class="saved" data-sync-status>saved locally</span>
             </div>
           </div>
           <div class="bar"><i id="bar"></i></div>
@@ -920,7 +920,8 @@
               <h2>Pattern-wise master sheet</h2>
               <p class="lede">
                 Tap Solved when you can do a problem from memory. Progress is
-                stored in this browser and kept if you reopen the page.
+                stored in this browser and, when enabled, synced privately
+                across your devices.
               </p>
             </div>
             <div class="card" id="desk-progress" style="display: none">
@@ -928,10 +929,11 @@
               <strong id="solved-count-desk" style="font-size: 28px">0</strong>
               <span class="meta" id="total-count-desk"> / 0</span>
               <div class="bar"><i id="bar-desk"></i></div>
-              <p class="saved" style="margin: 8px 0 0">saved on this device</p>
+              <p class="saved" data-sync-status style="margin: 8px 0 0">saved on this device</p>
             </div>
           </div>
           <div class="more">
+            <button class="ghost" id="sync" type="button">Enable sync</button>
             <button class="ghost" id="export" type="button">Export</button>
             <button class="ghost" id="import" type="button">Import</button>
             <button class="ghost" id="reset" type="button">Reset</button>
@@ -980,7 +982,7 @@
             >
               DSA Pattern-Wise Master Sheet by Alien_me
             </a>
-            · Solved / unsolved is saved in local storage on this device.
+            · Progress is saved locally and can be synced with Vercel Blob.
           </p>
           <div class="refs" id="refs"></div>
         </main>
@@ -3181,21 +3183,160 @@
         document.getElementById("sheet-json").textContent,
       );
       const KEY = "dsa-pattern-sheet-v1";
+      const UPDATED_KEY = KEY + "-updated-at";
       let state = {};
+      let stateUpdatedAt = Number(localStorage.getItem(UPDATED_KEY)) || 0;
       try {
         state = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
       } catch (e) {
         state = {};
+      }
+      if (!stateUpdatedAt && Object.keys(state).length) {
+        stateUpdatedAt = Date.now();
+        try {
+          localStorage.setItem(UPDATED_KEY, String(stateUpdatedAt));
+        } catch (e) {}
       }
       let filter = "all";
       let query = "";
       let lastRandomId = null;
       let pickTimer = 0;
 
-      function save() {
+      let syncEnabled = false;
+      let syncTimer = 0;
+      let syncInFlight = false;
+      let syncDirty = false;
+      let syncRetryDelay = 1500;
+
+      function setSyncStatus(text) {
+        document
+          .querySelectorAll("[data-sync-status]")
+          .forEach((el) => (el.textContent = text));
+      }
+
+      function save(markChanged = true) {
         try {
           localStorage.setItem(KEY, JSON.stringify(state));
+          if (markChanged) {
+            stateUpdatedAt = Date.now();
+            localStorage.setItem(UPDATED_KEY, String(stateUpdatedAt));
+          }
         } catch (e) {}
+        if (markChanged) queueRemoteSave();
+      }
+
+      function queueRemoteSave() {
+        if (!syncEnabled) return;
+        syncDirty = true;
+        setSyncStatus("saving…");
+        clearTimeout(syncTimer);
+        syncTimer = setTimeout(flushRemoteSave, 450);
+      }
+
+      async function flushRemoteSave() {
+        if (!syncEnabled || syncInFlight || !syncDirty) return;
+        syncDirty = false;
+        syncInFlight = true;
+        const snapshot = JSON.stringify(state);
+        const updatedAt = stateUpdatedAt;
+        try {
+          const response = await fetch("/api/progress", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ state: JSON.parse(snapshot), updatedAt }),
+          });
+          if (response.status === 401) {
+            syncEnabled = false;
+            document.getElementById("sync").textContent = "Enable sync";
+            setSyncStatus("saved locally");
+            return;
+          }
+          if (!response.ok) throw new Error("Sync failed");
+          syncRetryDelay = 1500;
+          setSyncStatus("synced");
+        } catch (error) {
+          syncDirty = true;
+          setSyncStatus("offline · saved locally");
+        } finally {
+          syncInFlight = false;
+          if (syncDirty && syncEnabled) {
+            clearTimeout(syncTimer);
+            syncTimer = setTimeout(flushRemoteSave, syncRetryDelay);
+            syncRetryDelay = Math.min(syncRetryDelay * 2, 60000);
+          }
+        }
+      }
+
+      async function loadRemoteProgress() {
+        setSyncStatus("syncing…");
+        try {
+          const response = await fetch("/api/progress", { cache: "no-store" });
+          if (response.status === 401) {
+            syncEnabled = false;
+            document.getElementById("sync").textContent = "Enable sync";
+            setSyncStatus("saved locally");
+            return false;
+          }
+          if (response.status === 503) {
+            setSyncStatus("saved locally");
+            return false;
+          }
+          if (!response.ok) throw new Error("Sync unavailable");
+
+          const remote = await response.json();
+          syncEnabled = true;
+          document.getElementById("sync").textContent = "Sync now";
+
+          if (remote.exists && remote.updatedAt > stateUpdatedAt) {
+            state = remote.state || {};
+            stateUpdatedAt = remote.updatedAt;
+            localStorage.setItem(UPDATED_KEY, String(stateUpdatedAt));
+            save(false);
+            render();
+          } else if (!remote.exists || stateUpdatedAt > remote.updatedAt) {
+            queueRemoteSave();
+            return true;
+          }
+
+          setSyncStatus("synced");
+          return true;
+        } catch (error) {
+          setSyncStatus("offline · saved locally");
+          return false;
+        }
+      }
+
+      async function enableSync() {
+        if (syncEnabled) {
+          await loadRemoteProgress();
+          return;
+        }
+
+        const password = prompt("Enter your sync password");
+        if (!password) return;
+        setSyncStatus("connecting…");
+        try {
+          const response = await fetch("/api/progress", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ password }),
+          });
+          if (!response.ok) {
+            alert(
+              response.status === 401
+                ? "Wrong sync password."
+                : response.status === 503
+                  ? "Sync is not configured on Vercel yet."
+                : "Could not enable sync.",
+            );
+            setSyncStatus("saved locally");
+            return;
+          }
+          await loadRemoteProgress();
+        } catch (error) {
+          alert("Could not enable sync.");
+          setSyncStatus("offline · saved locally");
+        }
       }
       function pid(p) {
         return String(p.id);
@@ -3607,11 +3748,16 @@
         const jump = e.target.closest("[data-jump]");
         if (jump) closeSheet();
         if (e.target.id === "reset") {
-          if (confirm("Clear all solved progress on this device?")) {
+          const scope = syncEnabled ? "everywhere" : "on this device";
+          if (confirm(`Clear all solved progress ${scope}?`)) {
             state = {};
             save();
             render();
           }
+          return;
+        }
+        if (e.target.id === "sync") {
+          enableSync();
           return;
         }
         if (e.target.id === "export") {
@@ -3660,6 +3806,7 @@
         document.getElementById("desk-progress").style.display = "block";
       }
       render();
+      loadRemoteProgress();
     </script>
   </body>
 </html>
