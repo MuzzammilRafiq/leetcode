@@ -6,36 +6,46 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <meta name="theme-color" content="#f3f5f8" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>DSA Pattern-Wise Master Sheet</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Spline+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
     />
+    <meta
+      name="theme-color"
+      content="#111111"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>DSA Patterns</title>
     <style>
       :root {
-        color-scheme: light;
-        --bg: #f3f5f8;
-        --bg-2: #e8ecf2;
-        --card: #ffffff;
-        --line: #dce3ee;
-        --text: #161b22;
-        --muted: #5b6573;
-        --faint: #8b95a5;
-        --amber: #d97706;
-        --amber-soft: #fef3c7;
-        --teal: #0f766e;
-        --teal-soft: #ccfbf1;
-        --green: #059669;
-        --green-soft: #d1fae5;
-        --shadow: 0 8px 24px rgba(22, 27, 34, 0.06);
-        --radius: 18px;
-        --tap: 44px;
-        --pad: max(16px, env(safe-area-inset-left));
-        --pad-r: max(16px, env(safe-area-inset-right));
+        color-scheme: light dark;
+        --bg: #ffffff;
+        --text: #111111;
+        --muted: #737373;
+        --faint: #b0b0b0;
+        --line: #ececec;
+        --soft: #f6f6f6;
+        --hl: #fff6d6;
+        --sans:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        --mono:
+          ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+        --pad: max(20px, env(safe-area-inset-left));
+        --pad-r: max(20px, env(safe-area-inset-right));
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111111;
+          --text: #ededed;
+          --muted: #8f8f8f;
+          --faint: #555555;
+          --line: #242424;
+          --soft: #1a1a1a;
+          --hl: #33301f;
+        }
       }
 
       * {
@@ -45,16 +55,15 @@
 
       html {
         scroll-behavior: smooth;
+        scroll-padding-top: 120px;
       }
 
       body {
         margin: 0;
         color: var(--text);
         background: var(--bg);
-        font:
-          16px/1.45 "Spline Sans",
-          system-ui,
-          sans-serif;
+        font: 15px/1.55 var(--sans);
+        -webkit-font-smoothing: antialiased;
       }
 
       button,
@@ -64,567 +73,447 @@
       }
 
       a {
-        color: var(--teal);
+        color: inherit;
         text-decoration: none;
       }
 
-      a:hover {
-        text-decoration: underline;
+      :focus-visible {
+        outline: 2px solid var(--text);
+        outline-offset: 2px;
+        border-radius: 2px;
       }
 
-      .top {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        background: rgba(243, 245, 248, 0.94);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--line);
-        padding: max(10px, env(safe-area-inset-top)) var(--pad-r) 10px
-          var(--pad);
+      .wrap {
+        max-width: 660px;
+        margin: 0 auto;
+        padding-left: var(--pad);
+        padding-right: var(--pad-r);
       }
 
-      .top-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .mark {
-        width: 36px;
-        height: 36px;
-        flex: none;
-        display: grid;
-        place-items: center;
-        border-radius: 11px;
-        background: var(--amber);
-        color: #fff;
-        font-weight: 700;
-        letter-spacing: -0.04em;
-      }
-
-      .brand {
-        flex: 1;
-        min-width: 0;
-      }
-
-      .brand h1 {
-        margin: 0;
-        font:
-          600 16px/1.15 "Source Serif 4",
-          Georgia,
-          serif;
-      }
-
-      .brand p {
-        margin: 2px 0 0;
+      .text-btn {
+        padding: 0;
+        border: 0;
+        background: none;
         color: var(--muted);
-        font-size: 12px;
+        cursor: pointer;
       }
 
-      .progress-mini {
-        text-align: right;
+      .text-btn:hover,
+      .text-btn.on {
+        color: var(--text);
+      }
+
+      /* Header */
+
+      .intro {
+        padding-top: max(56px, env(safe-area-inset-top));
+      }
+
+      .intro h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .intro p {
+        margin: 4px 0 0;
+        color: var(--muted);
+      }
+
+      .toc {
+        columns: 2;
+        column-gap: 32px;
+        margin: 36px 0 0;
+        font-size: 14px;
+      }
+
+      .toc a {
+        display: flex;
+        gap: 8px;
+        padding: 3px 0;
+        break-inside: avoid;
+        color: var(--muted);
+      }
+
+      .toc a:hover {
+        color: var(--text);
+      }
+
+      .toc .n {
+        margin-left: auto;
+        color: var(--faint);
+        font: 12px/1.9 var(--mono);
         font-variant-numeric: tabular-nums;
       }
 
-      .progress-mini strong {
-        font-size: 18px;
-      }
-
-      .progress-mini span {
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      .saved {
-        display: block;
-        color: var(--green);
-        font-size: 11px;
-        margin-top: 1px;
+      .toc a.done,
+      .toc a.done .n {
+        color: var(--text);
       }
 
       .bar {
-        height: 6px;
-        border-radius: 99px;
-        background: var(--bg-2);
-        margin-top: 8px;
-        overflow: hidden;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        margin-top: 40px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
       }
 
-      .bar > i {
-        display: block;
-        height: 100%;
-        width: 0;
-        background: var(--amber);
+      .bar .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 20px;
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-bottom: 12px;
       }
 
       .search {
-        width: 100%;
-        margin-top: 10px;
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 12px 12px 12px 40px;
+        flex: 1 1 160px;
+        min-width: 0;
+        height: 32px;
+        padding: 0;
+        border: 0;
+        background: none;
         outline: none;
         font-size: 16px;
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%238a8176' stroke-width='1.6'><circle cx='7' cy='7' r='5'/><path d='M11 11l3 3'/></svg>");
-        background-repeat: no-repeat;
-        background-position: 14px 50%;
       }
 
-      .search:focus {
-        border-color: var(--amber);
-        box-shadow: 0 0 0 3px var(--amber-soft);
+      .search::placeholder {
+        color: var(--faint);
+      }
+
+      .search::-webkit-search-cancel-button {
+        display: none;
       }
 
       .filters {
         display: flex;
-        gap: 8px;
-        overflow-x: auto;
-        margin-top: 10px;
-        padding-bottom: 2px;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .chip,
-      .ghost,
-      .jump {
-        flex: none;
-        min-height: 38px;
-        border: 1px solid var(--line);
-        background: var(--card);
-        color: var(--muted);
-        border-radius: 999px;
-        padding: 8px 14px;
-        cursor: pointer;
-      }
-
-      .chip.on {
-        color: #fff;
-        background: var(--amber);
-        border-color: var(--amber);
-      }
-
-      .jump {
-        color: var(--text);
-      }
-
-      .random-btn {
-        margin-left: auto;
-        color: var(--text);
-      }
-
-      .row.picked {
-        background: var(--amber-soft);
-        border-color: var(--amber);
-        box-shadow: 0 0 0 2px var(--amber-soft);
-      }
-
-      .pick-panel .id {
-        display: inline;
-        margin-right: 6px;
-      }
-
-      .pick-meta {
-        color: var(--muted);
-        font-size: 13px;
-        margin: 6px 0 0;
-      }
-
-      .pick-actions {
-        display: flex;
-        gap: 8px;
-        margin-top: 16px;
-      }
-
-      .pick-go {
-        flex: 1;
-        min-height: var(--tap);
-        display: grid;
-        place-items: center;
-        border-radius: 12px;
-        background: var(--amber);
-        color: #fff;
-        font-weight: 600;
+        gap: 16px;
         font-size: 14px;
-        text-decoration: none;
-        border: 0;
       }
 
-      .pick-go:hover {
-        text-decoration: none;
-        color: #fff;
+      .bar .random {
+        font-size: 14px;
+        margin-left: auto;
       }
 
-      .pick-actions .ghost {
-        flex: 1;
+      /* Patterns */
+
+      .pattern {
+        padding-top: 56px;
       }
 
-      .pills {
+      .pattern h2 {
         display: flex;
-        gap: 8px;
-        overflow-x: auto;
-        padding: 10px var(--pad) 12px;
-        -webkit-overflow-scrolling: touch;
+        align-items: baseline;
+        gap: 12px;
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
       }
 
-      .pill {
-        flex: none;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        min-height: 36px;
-        padding: 6px 12px;
-        border-radius: 999px;
-        border: 1px solid var(--line);
-        background: var(--card);
-        color: var(--text);
-        text-decoration: none;
-        font-size: 13px;
-        white-space: nowrap;
-      }
-
-      .pill:hover {
-        text-decoration: none;
-      }
-
-      .pill .n {
+      .count {
+        margin-left: auto;
         color: var(--faint);
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 11px;
+        font: 400 12px var(--mono);
+        font-variant-numeric: tabular-nums;
       }
 
-      .main {
-        padding: 16px var(--pad) calc(40px + env(safe-area-inset-bottom))
-          var(--pad);
-        max-width: 880px;
-        margin: 0 auto;
-      }
-
-      .hero h2 {
-        margin: 4px 0 8px;
-        font:
-          600 32px/1.08 "Source Serif 4",
-          Georgia,
-          serif;
-        letter-spacing: -0.03em;
-      }
-
-      .lede {
-        color: var(--muted);
-        margin: 0 0 16px;
-      }
-
-      .card {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        padding: 18px 16px 12px;
-        margin: 0 0 14px;
-        box-shadow: var(--shadow);
-        scroll-margin-top: 148px;
-      }
-
-      .kicker {
-        color: var(--amber);
-        font-size: 11px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .card h3 {
-        margin: 4px 0 0;
-        font:
-          600 24px/1.15 "Source Serif 4",
-          Georgia,
-          serif;
-      }
-
-      .meta {
-        color: var(--muted);
-        font-size: 13px;
+      .count.done {
+        color: var(--text);
       }
 
       .idea {
-        margin: 10px 0 12px;
-        color: #3d3832;
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 14px;
       }
 
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin: 0 0 12px;
+      .tpl {
+        margin-top: 8px;
+        font-size: 14px;
       }
 
-      .tag {
+      .tpl summary {
+        display: inline;
+        color: var(--faint);
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .tpl summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .tpl summary:hover,
+      .tpl[open] summary {
+        color: var(--text);
+      }
+
+      .tpl summary::after {
+        content: " +";
+      }
+
+      .tpl[open] summary::after {
+        content: " −";
+      }
+
+      .tpl-body {
+        margin-top: 12px;
+        padding: 16px;
+        background: var(--soft);
+        border-radius: 6px;
+      }
+
+      .tpl-body p {
+        margin: 0 0 4px;
+        color: var(--muted);
+      }
+
+      .tpl-body p b {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .tpl-code {
+        position: relative;
+        margin-top: 12px;
+      }
+
+      .tpl-code .copy {
+        position: absolute;
+        top: 0;
+        right: 0;
         font-size: 12px;
-        color: var(--teal);
-        background: var(--teal-soft);
-        padding: 4px 8px;
-        border-radius: 999px;
-      }
-
-      .grid-2 {
-        display: grid;
-        gap: 10px;
-        margin-bottom: 12px;
       }
 
       pre {
         margin: 0;
-        background: #f6f8fb;
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 14px;
         overflow: auto;
-        font:
-          12.5px/1.55 "IBM Plex Mono",
-          ui-monospace,
-          monospace;
-        color: #1f2937;
-        max-height: 240px;
-      }
-
-      .code-wrap {
-        position: relative;
-      }
-
-      .copy {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        border: 1px solid var(--line);
-        background: var(--card);
-        color: var(--muted);
-        border-radius: 999px;
-        padding: 6px 10px;
-        min-height: 32px;
-        cursor: pointer;
-      }
-
-      .box {
-        background: #f6f8fb;
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 14px;
-        font-size: 14px;
-      }
-
-      .box h4 {
-        margin: 0 0 8px;
-        font-size: 11px;
-        color: var(--muted);
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+        font: 12.5px/1.65 var(--mono);
       }
 
       .problems {
-        display: grid;
-        gap: 8px;
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
       }
 
       .row {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 8px 10px;
-        align-items: center;
-        padding: 12px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: #fff;
-        scroll-margin-top: 168px;
-      }
-
-      .row.solved {
-        background: var(--green-soft);
-        border-color: #a7e3c4;
-      }
-
-      .id-col {
-        display: none;
-      }
-
-      .row-main {
-        min-width: 0;
-      }
-
-      .row-top {
         display: flex;
-        align-items: baseline;
-        gap: 8px;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 5px 0;
       }
 
-      .id {
-        font-family: "IBM Plex Mono", monospace;
-        color: var(--faint);
-        font-size: 12px;
+      .row.picked {
+        margin: 0 -8px;
+        padding: 5px 8px;
+        background: var(--hl);
+        border-radius: 4px;
+      }
+
+      .check {
+        position: relative;
         flex: none;
+        width: 22px;
+        height: 24px;
+        margin: -2px 0 -2px -4px;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: pointer;
       }
 
-      .title {
-        font-weight: 600;
-        color: var(--teal);
+      .check::before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 4px;
+        width: 13px;
+        height: 13px;
+        border: 1.5px solid var(--faint);
+        border-radius: 3px;
+      }
+
+      .check:hover::before {
+        border-color: var(--muted);
+      }
+
+      .row.solved .check::before {
+        background: var(--text);
+        border-color: var(--text);
+      }
+
+      .row.solved .check::after {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: 8.5px;
+        width: 3.5px;
+        height: 7px;
+        border: solid var(--bg);
+        border-width: 0 1.75px 1.75px 0;
+        transform: rotate(45deg);
+      }
+
+      .ptitle {
+        min-width: 0;
         overflow-wrap: anywhere;
       }
 
+      .ptitle:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--faint);
+        text-underline-offset: 3px;
+      }
+
+      .row.solved .ptitle {
+        color: var(--faint);
+      }
+
       .star {
-        color: var(--amber);
-      }
-
-      .note {
         color: var(--faint);
-        font-size: 12px;
-        margin-top: 2px;
+        font-size: 11px;
+        margin-left: 4px;
       }
 
-      .row-actions {
-        display: flex;
-        gap: 8px;
-        grid-column: 1 / -1;
-      }
-
-      .toggle {
-        grid-row: 1;
-        width: var(--tap);
-        height: var(--tap);
-        min-width: var(--tap);
-        border-radius: 10px;
-        border: 2px solid var(--line);
-        background: #fff;
-        color: transparent;
-        font-size: 0;
-        cursor: pointer;
-      }
-
-      .row.solved .toggle {
-        background: var(--green);
-        border-color: var(--green);
-        color: transparent;
-      }
-
-      .ext {
-        flex: 1;
-        min-height: var(--tap);
-        display: grid;
-        place-items: center;
-        border-radius: 12px;
-        border: 1px solid var(--line);
-        font-weight: 600;
-        font-size: 14px;
-        text-decoration: none;
-        cursor: pointer;
-        background: var(--bg);
-        color: var(--text);
-      }
-
-      .ext:hover {
-        text-decoration: none;
-      }
-
-      .toggle-label {
-        flex: 1;
-        min-height: var(--tap);
-        display: grid;
-        place-items: center;
-        border-radius: 12px;
-        border: 1px solid var(--line);
-        background: #fff;
-        color: var(--muted);
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-      }
-
-      .row.solved .toggle-label {
-        background: var(--green);
-        color: #fff;
-        border-color: var(--green);
-      }
-
-      .overview {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 8px;
-        margin-bottom: 8px;
-      }
-
-      .ov {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 14px 16px;
-        border: 1px solid var(--line);
-        background: var(--card);
-        border-radius: 16px;
-        color: inherit;
-        text-decoration: none;
-        min-height: 52px;
-        box-shadow: var(--shadow);
-      }
-
-      .ov:hover {
-        text-decoration: none;
-        border-color: #c5d0e0;
-      }
-
-      .ov b {
-        font-weight: 600;
-        font-size: 14px;
-      }
-
-      .ov span {
-        color: var(--amber);
-        font-size: 12px;
-        letter-spacing: 0.04em;
-        white-space: nowrap;
-      }
-
-      .recognize {
-        display: grid;
-        gap: 8px;
-      }
-
-      .recognize div {
-        display: grid;
-        gap: 4px;
-        padding: 12px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: #fff;
-        font-size: 14px;
-      }
-
-      .recognize b {
-        color: var(--amber);
-      }
-
-      .footer {
-        margin-top: 18px;
+      .pnote {
+        display: block;
         color: var(--faint);
         font-size: 13px;
       }
 
-      .refs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 10px;
-      }
-
-      .refs a {
-        color: var(--muted);
-        border: 1px solid var(--line);
-        padding: 8px 12px;
-        border-radius: 999px;
-        font-size: 13px;
-        background: var(--card);
+      .pid {
+        margin-left: auto;
+        padding-left: 12px;
+        color: var(--faint);
+        font: 12px/1.95 var(--mono);
+        font-variant-numeric: tabular-nums;
       }
 
       .empty {
+        margin: 12px 0 0;
         color: var(--muted);
-        padding: 18px 4px;
       }
+
+      /* Reference + footer */
+
+      .extras {
+        margin-top: 80px;
+        border-top: 1px solid var(--line);
+      }
+
+      .extras details {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .extras summary {
+        padding: 14px 0;
+        color: var(--muted);
+        font-size: 14px;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .extras summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .extras summary::after {
+        content: "+";
+        float: right;
+        color: var(--faint);
+      }
+
+      .extras details[open] summary {
+        color: var(--text);
+      }
+
+      .extras details[open] summary::after {
+        content: "−";
+      }
+
+      .ref {
+        margin: 0 0 20px;
+        padding: 0;
+        list-style: none;
+        font-size: 14px;
+      }
+
+      .ref li {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        padding: 4px 0;
+      }
+
+      .ref li span:first-child {
+        color: var(--muted);
+      }
+
+      ol.ref {
+        columns: 2;
+        column-gap: 32px;
+        list-style: decimal inside;
+        color: var(--faint);
+      }
+
+      ol.ref li {
+        display: list-item;
+        break-inside: avoid;
+      }
+
+      ol.ref a {
+        color: var(--muted);
+      }
+
+      ol.ref a:hover {
+        color: var(--text);
+      }
+
+      .footer {
+        padding-top: 32px;
+        padding-bottom: calc(64px + env(safe-area-inset-bottom));
+        color: var(--faint);
+        font-size: 13px;
+      }
+
+      .footer .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 16px;
+      }
+
+      .footer .text-btn {
+        color: var(--faint);
+      }
+
+      .footer .text-btn:hover {
+        color: var(--text);
+      }
+
+      .footer p {
+        margin: 16px 0 0;
+      }
+
+      .footer a {
+        color: var(--muted);
+      }
+
+      .footer a:hover {
+        color: var(--text);
+      }
+
+      .status {
+        margin-right: auto;
+      }
+
+      /* Random picker */
 
       .sheet {
         position: fixed;
@@ -640,361 +529,218 @@
       .sheet-bg {
         position: absolute;
         inset: 0;
-        background: rgba(29, 25, 21, 0.35);
+        background: rgba(0, 0, 0, 0.25);
       }
 
-      .sheet-panel {
+      .pick-panel {
         position: absolute;
         left: 0;
         right: 0;
         bottom: 0;
-        max-height: 80vh;
-        overflow: auto;
-        background: var(--card);
-        border-radius: 20px 20px 0 0;
-        padding: 14px 14px calc(20px + env(safe-area-inset-bottom));
-      }
-
-      .sheet-panel h2 {
-        margin: 4px 12px 12px;
-        font:
-          600 20px/1.2 "Source Serif 4",
-          Georgia,
-          serif;
-      }
-
-      .nav a {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        min-height: 44px;
-        padding: 8px 12px;
-        border-radius: 12px;
-        color: var(--text);
-        text-decoration: none;
-      }
-
-      .nav a:hover {
+        padding: 24px var(--pad-r) calc(24px + env(safe-area-inset-bottom))
+          var(--pad);
         background: var(--bg);
-        text-decoration: none;
+        border-radius: 12px 12px 0 0;
       }
 
-      .nav .num {
-        width: 24px;
+      .pick-label {
         color: var(--faint);
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 12px;
+        font-size: 13px;
       }
 
-      .nav .done {
-        margin-left: auto;
-        color: var(--green);
-        font-size: 12px;
+      .pick-panel h2 {
+        margin: 8px 0 0;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
       }
 
-      .more {
+      .pick-panel h2 .pid {
+        margin: 0 8px 0 0;
+        padding: 0;
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      .pick-meta {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .pick-actions {
         display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 10px;
+        gap: 20px;
+        align-items: center;
+        margin-top: 24px;
+        font-size: 14px;
       }
 
-      @media (min-width: 900px) {
-        .pills {
-          display: none;
+      .pick-go {
+        padding: 8px 14px;
+        border-radius: 6px;
+        background: var(--text);
+        color: var(--bg);
+        font-weight: 500;
+      }
+
+      .pick-go:hover {
+        opacity: 0.85;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      @media (max-width: 559px) {
+        .toc {
+          columns: 1;
         }
 
-        .jump {
-          display: none;
+        ol.ref {
+          columns: 1;
         }
 
-        #desk-progress {
-          display: block !important;
+        .ref li {
+          grid-template-columns: 1fr;
+          gap: 0;
+          padding: 6px 0;
         }
 
-        .app {
-          display: grid;
-          grid-template-columns: 260px 1fr;
+        .search {
+          flex-basis: 100%;
         }
 
-        .sidebar {
-          display: block;
-          position: sticky;
-          top: 0;
-          height: 100vh;
-          overflow: auto;
-          padding: 20px 12px 28px;
-          border-right: 1px solid var(--line);
-          background: #eef2f6;
-        }
-
-        .top {
-          padding-left: 32px;
-          padding-right: 32px;
-        }
-
-        .main {
-          max-width: 980px;
-          padding: 28px 32px 64px;
-        }
-
-        .hero {
-          display: grid;
-          grid-template-columns: 1fr 220px;
-          gap: 24px;
-          align-items: end;
-        }
-
-        .hero h2 {
-          font-size: 40px;
-        }
-
-        .card {
-          padding: 22px 24px;
-          scroll-margin-top: 18px;
-        }
-
-        .grid-2 {
-          grid-template-columns: 1.15fr 0.85fr;
-        }
-
-        .overview {
-          grid-template-columns: repeat(4, 1fr);
+        .bar .wrap {
+          gap: 4px 16px;
+          padding-bottom: 10px;
         }
 
         .row {
-          grid-template-columns: 28px 64px 1fr auto;
-          padding: 10px 4px;
-          border: 0;
-          border-bottom: 1px solid var(--line);
-          border-radius: 0;
-          background: transparent;
-          box-shadow: none;
+          padding: 7px 0;
+        }
+      }
+
+      @media (min-width: 560px) {
+        html {
+          scroll-padding-top: 72px;
         }
 
-        .row.solved {
-          background: transparent;
+        .intro {
+          padding-top: 88px;
         }
 
-        .row.picked {
-          border-radius: 10px;
-          background: var(--amber-soft);
-        }
-
-        .row {
-          scroll-margin-top: 140px;
+        .search {
+          font-size: 14px;
         }
 
         #random-sheet .pick-panel {
           left: 50%;
           right: auto;
           bottom: auto;
-          top: 46%;
+          top: 38%;
           transform: translate(-50%, -50%);
           width: min(420px, calc(100vw - 48px));
-          max-height: min(80vh, 520px);
-          border-radius: 20px;
-          padding: 22px 22px 20px;
-          box-shadow: 0 18px 50px rgba(22, 27, 34, 0.16);
-        }
-
-        .id-col {
-          display: block;
-        }
-
-        .id-mobile {
-          display: none;
-        }
-
-        .toggle {
-          width: 22px;
-          height: 22px;
-          min-width: 22px;
-          min-height: 22px;
-          border-radius: 5px;
-          border-width: 2px;
-        }
-
-        .row-actions {
-          grid-column: auto;
-          width: auto;
-        }
-
-        .toggle-label {
-          display: none;
-        }
-
-        .ext {
-          min-width: auto;
-          min-height: auto;
-          height: auto;
-          padding: 0;
-          border: 0;
-          background: transparent;
-          color: var(--muted);
-          font-weight: 500;
-          font-size: 13px;
-        }
-
-        .recognize {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      @media (max-width: 899px) {
-        .sidebar {
-          display: none;
-        }
-      }
-
-      @media (min-width: 560px) and (max-width: 899px) {
-        .overview {
-          grid-template-columns: 1fr 1fr;
+          padding: 28px;
+          border: 1px solid var(--line);
+          border-radius: 10px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
       }
     </style>
   </head>
 
   <body>
-    <div class="app">
-      <aside class="sidebar">
-        <div class="top-row" style="padding: 4px 8px 16px">
-          <div class="mark">40</div>
-          <div class="brand">
-            <h1>Pattern sheet</h1>
-            <p data-sync-status>saved on this device</p>
-          </div>
+    <header class="intro wrap">
+      <h1>DSA Patterns</h1>
+      <p><span data-solved>0</span> of <span data-total>0</span> solved</p>
+      <nav class="toc" id="toc" aria-label="Patterns"></nav>
+    </header>
+
+    <div class="bar">
+      <div class="wrap">
+        <input
+          class="search"
+          id="q"
+          placeholder="Search"
+          type="search"
+          enterkeyhint="search"
+          aria-label="Search problems"
+        />
+        <div class="filters" role="group" aria-label="Filter">
+          <button class="text-btn on" data-filter="all" type="button">
+            All
+          </button>
+          <button class="text-btn" data-filter="todo" type="button">
+            Unsolved
+          </button>
+          <button class="text-btn" data-filter="done" type="button">
+            Solved
+          </button>
+          <button class="text-btn" data-filter="star" type="button">
+            Starred
+          </button>
         </div>
-        <nav class="nav" id="nav-desk"></nav>
-      </aside>
-      <div>
-        <header class="top">
-          <div class="top-row">
-            <div class="mark">40</div>
-            <div class="brand">
-              <h1>Pattern sheet</h1>
-              <p>Vishal · Alien_me</p>
-            </div>
-            <div class="progress-mini">
-              <strong id="solved-count">0</strong
-              ><span id="total-count"> / 0</span>
-              <span class="saved" data-sync-status>saved locally</span>
-            </div>
-          </div>
-          <div class="bar"><i id="bar"></i></div>
-          <input
-            class="search"
-            id="q"
-            placeholder="Search problems or patterns"
-            type="search"
-            enterkeyhint="search"
-          />
-          <div class="filters">
-            <button class="chip on" data-filter="all" type="button">All</button>
-            <button class="chip" data-filter="todo" type="button">
-              Unsolved
-            </button>
-            <button class="chip" data-filter="done" type="button">
-              Solved
-            </button>
-            <button class="chip" data-filter="star" type="button">
-              Starred
-            </button>
-            <button
-              class="ghost random-btn"
-              id="random-btn"
-              type="button"
-              aria-haspopup="dialog"
-              aria-controls="random-sheet"
-            >
-              Random
-            </button>
-            <button class="jump" id="open-sheet" type="button">Patterns</button>
-          </div>
-        </header>
-        <div class="pills" id="pills"></div>
-        <main class="main">
-          <div class="hero">
-            <div>
-              <div class="kicker">LeetCode discuss · DSA</div>
-              <h2>Pattern-wise master sheet</h2>
-              <p class="lede">
-                Tap Solved when you can do a problem from memory. Progress is
-                stored in this browser and, when enabled, synced privately
-                across your devices.
-              </p>
-            </div>
-            <div class="card" id="desk-progress" style="display: none">
-              <div class="meta">Solved (unique problems)</div>
-              <strong id="solved-count-desk" style="font-size: 28px">0</strong>
-              <span class="meta" id="total-count-desk"> / 0</span>
-              <div class="bar"><i id="bar-desk"></i></div>
-              <p class="saved" data-sync-status style="margin: 8px 0 0">saved on this device</p>
-            </div>
-          </div>
-          <div class="more">
-            <button class="ghost" id="sync" type="button">Enable sync</button>
-            <button class="ghost" id="export" type="button">Export</button>
-            <button class="ghost" id="import" type="button">Import</button>
-            <button class="ghost" id="reset" type="button">Reset</button>
-          </div>
-          <section class="card">
-            <div class="kicker">How to use</div>
-            <h3>Pattern → template → problems</h3>
-            <p class="idea" style="margin-bottom: 8px">
-              Learn the keywords, copy the template, then work the list. Tap
-              <b>Solved</b> when you can do it from memory. The same LeetCode
-              number is shared across patterns.
-            </p>
-            <p class="meta">
-              Loop: 3 easy → 5 medium → 1 hard → close notes → redo.
-            </p>
-          </section>
-          <section>
-            <h3
-              style="
-                font:
-                  600 20px/1.2 &quot;Source Serif 4&quot;,
-                  Georgia,
-                  serif;
-                margin: 8px 0 12px;
-              "
-            >
-              The master list
-            </h3>
-            <div class="overview" id="overview"></div>
-          </section>
-          <div id="patterns"></div>
-          <section class="card" id="recognize">
-            <div class="kicker">Interview instinct</div>
-            <h3>Pattern recognition</h3>
-            <p class="idea">
-              Read the wording first. Map it to a pattern before you code.
-            </p>
-            <div class="recognize" id="recognize-list"></div>
-          </section>
-          <p class="footer">
-            Source:
-            <a
-              href="https://leetcode.com/discuss/post/8492532/dsa-pattern-wise-master-sheet-by-vishalb-vnx9/"
-              target="_blank"
-              rel="noopener"
-            >
-              DSA Pattern-Wise Master Sheet by Alien_me
-            </a>
-            · Progress is saved locally and can be synced with Vercel Blob.
-          </p>
-          <div class="refs" id="refs"></div>
-        </main>
+        <button
+          class="text-btn random"
+          id="random-btn"
+          type="button"
+          aria-haspopup="dialog"
+          aria-controls="random-sheet"
+        >
+          Random
+        </button>
       </div>
     </div>
-    <div class="sheet" id="sheet">
-      <div class="sheet-bg" id="close-sheet"></div>
-      <div class="sheet-panel">
-        <h2>Jump to a pattern</h2>
-        <nav class="nav" id="nav-mobile"></nav>
+
+    <main class="wrap" id="patterns"></main>
+
+    <div class="wrap">
+      <div class="extras">
+        <details>
+          <summary>Recognizing patterns</summary>
+          <ul class="ref" id="recognize-list"></ul>
+        </details>
+        <details>
+          <summary>Master list</summary>
+          <ol class="ref" id="overview"></ol>
+        </details>
+        <details>
+          <summary>Further reading</summary>
+          <ul class="ref" id="refs"></ul>
+        </details>
       </div>
+
+      <footer class="footer">
+        <div class="actions">
+          <span class="status" data-sync-status>saved locally</span>
+          <button class="text-btn" data-action="sync" type="button">
+            Enable sync
+          </button>
+          <button class="text-btn" data-action="export" type="button">
+            Export
+          </button>
+          <button class="text-btn" data-action="import" type="button">
+            Import
+          </button>
+          <button class="text-btn" data-action="reset" type="button">
+            Reset
+          </button>
+        </div>
+        <p>
+          From the
+          <a
+            href="https://leetcode.com/discuss/post/8492532/dsa-pattern-wise-master-sheet-by-vishalb-vnx9/"
+            target="_blank"
+            rel="noopener"
+            >DSA Pattern-Wise Master Sheet</a
+          >
+          by Alien_me.
+        </p>
+      </footer>
     </div>
+
     <div
       class="sheet"
       id="random-sheet"
@@ -1003,20 +749,18 @@
       aria-labelledby="random-title"
     >
       <div class="sheet-bg" id="close-random"></div>
-      <div class="sheet-panel pick-panel">
-        <div class="kicker" id="random-kicker">Random problem</div>
+      <div class="pick-panel">
+        <div class="pick-label" id="random-kicker">Random problem</div>
         <h2 id="random-title"></h2>
         <p class="pick-meta" id="random-meta"></p>
         <div class="pick-actions" id="random-actions">
-          <a
-            class="pick-go"
-            id="random-open"
-            target="_blank"
-            rel="noopener"
+          <a class="pick-go" id="random-open" target="_blank" rel="noopener"
             >Open on LeetCode</a
           >
-          <button class="ghost" id="random-again" type="button">Another</button>
-          <button class="ghost" id="random-close-btn" type="button" hidden>
+          <button class="text-btn" id="random-again" type="button">
+            Another
+          </button>
+          <button class="text-btn" id="random-close-btn" type="button" hidden>
             Close
           </button>
         </div>
@@ -3214,6 +2958,12 @@
           .forEach((el) => (el.textContent = text));
       }
 
+      function setSyncLabel(text) {
+        document
+          .querySelectorAll('[data-action="sync"]')
+          .forEach((el) => (el.textContent = text));
+      }
+
       function save(markChanged = true) {
         try {
           localStorage.setItem(KEY, JSON.stringify(state));
@@ -3247,7 +2997,7 @@
           });
           if (response.status === 401) {
             syncEnabled = false;
-            document.getElementById("sync").textContent = "Enable sync";
+            setSyncLabel("Enable sync");
             setSyncStatus("saved locally");
             return;
           }
@@ -3273,7 +3023,7 @@
           const response = await fetch("/api/progress", { cache: "no-store" });
           if (response.status === 401) {
             syncEnabled = false;
-            document.getElementById("sync").textContent = "Enable sync";
+            setSyncLabel("Enable sync");
             setSyncStatus("saved locally");
             return false;
           }
@@ -3285,7 +3035,7 @@
 
           const remote = await response.json();
           syncEnabled = true;
-          document.getElementById("sync").textContent = "Sync now";
+          setSyncLabel("Sync now");
 
           if (remote.exists && remote.updatedAt > stateUpdatedAt) {
             state = remote.state || {};
@@ -3327,7 +3077,7 @@
                 ? "Wrong sync password."
                 : response.status === 503
                   ? "Sync is not configured on Vercel yet."
-                : "Could not enable sync.",
+                  : "Could not enable sync.",
             );
             setSyncStatus("saved locally");
             return;
@@ -3364,9 +3114,6 @@
         for (const pat of DATA.patterns)
           for (const p of pat.problems) m.set(pid(p), p);
         return [...m.values()];
-      }
-      function stars(n) {
-        return "★".repeat(n) + "☆".repeat(Math.max(0, 5 - n));
       }
       function esc(s) {
         return String(s).replace(
@@ -3468,8 +3215,8 @@
         const closeBtn = document.getElementById("random-close-btn");
         const sel = selectionLabel();
         kicker.textContent = query
-          ? `Random · ${sel} · “${query}”`
-          : `Random · ${sel}`;
+          ? `Random from ${sel.toLowerCase()} matching “${query}”`
+          : `Random from ${sel.toLowerCase()}`;
         if (!pick) {
           title.textContent = "No matching problems";
           if (query) {
@@ -3497,36 +3244,24 @@
         closeBtn.hidden = true;
         title.textContent = "";
         const idEl = document.createElement("span");
-        idEl.className = "id";
+        idEl.className = "pid";
         idEl.textContent = pick.p.id;
-        title.append(idEl, document.createTextNode(" " + pick.p.title));
+        title.append(idEl, document.createTextNode(pick.p.title));
         if (pick.star) {
           const starEl = document.createElement("span");
           starEl.className = "star";
-          starEl.textContent = " ★";
+          starEl.textContent = "  ★";
           title.append(starEl);
         }
-        const pats = [
-          ...new Set(pick.patterns.map((pat) => pat.name)),
-        ].join(" · ");
+        const pats = [...new Set(pick.patterns.map((pat) => pat.name))].join(
+          " · ",
+        );
         meta.textContent =
           pats + " · " + (solved(pick.p) ? "Solved" : "Unsolved");
         open.href = lcUrl(pick.p);
         sheetEl.classList.add("open");
         highlightPick(pid(pick.p));
       }
-      function navHtml() {
-        return (
-          DATA.patterns
-            .map((pat) => {
-              const done = pat.problems.filter(solved).length;
-              return `<a href="#${pat.id}" data-jump="${pat.id}"><span class="num">${String(pat.n).padStart(2, "0")}</span>${esc(pat.name)}<span class="done">${done}/${pat.problems.length}</span></a>`;
-            })
-            .join("") +
-          `<a href="#recognize" data-jump="recognize"><span class="num">◆</span>Recognition</a>`
-        );
-      }
-
       function renderOverview() {
         const jump = {
           1: "hashmap",
@@ -3573,41 +3308,30 @@
         document.getElementById("overview").innerHTML = DATA.master
           .map(
             ([n, name, s]) =>
-              `<a class="ov" href="#${jump[n] || "two-pointer"}"><b>${n}. ${esc(name)}</b><span>${stars(s)}</span></a>`,
+              `<li><a href="#${jump[n] || "two-pointer"}">${esc(name)}</a></li>`,
           )
           .join("");
       }
 
       function renderNav() {
-        const html = navHtml();
-        document.getElementById("nav-desk").innerHTML = html;
-        document.getElementById("nav-mobile").innerHTML = html;
-        document.getElementById("pills").innerHTML = DATA.patterns
-          .map(
-            (pat) =>
-              `<a class="pill" href="#${pat.id}"><span class="n">${pat.n}</span>${esc(pat.name)}</a>`,
-          )
+        document.getElementById("toc").innerHTML = DATA.patterns
+          .map((pat) => {
+            const done = pat.problems.filter(solved).length;
+            const total = pat.problems.length;
+            return `<a href="#${pat.id}"${done === total ? ' class="done"' : ""}>${esc(pat.name)}<span class="n">${done}/${total}</span></a>`;
+          })
           .join("");
       }
 
+      const openTemplates = new Set();
+
       function problemRow(p) {
         const on = solved(p);
-        return `<article class="row ${on ? "solved" : ""}" data-id="${pid(p)}">
-    <button class="toggle" type="button" data-toggle="${pid(p)}" aria-pressed="${on}" aria-label="${on ? "Mark unsolved" : "Mark solved"}"></button>
-    <span class="id id-col">${p.id}</span>
-    <div class="row-main">
-      <div class="row-top">
-        <span class="id id-mobile">${p.id}</span>
-        <a class="title" href="${lcUrl(p)}" target="_blank" rel="noopener">${esc(p.title)}</a>
-        ${p.star ? '<span class="star">★</span>' : ""}
-      </div>
-      ${p.note ? `<div class="note">${esc(p.note)}</div>` : ""}
-    </div>
-    <div class="row-actions">
-      <a class="ext" href="${lcUrl(p)}" target="_blank" rel="noopener">Open</a>
-      <button class="toggle-label" type="button" data-toggle="${pid(p)}">${on ? "Solved" : "Unsolved"}</button>
-    </div>
-  </article>`;
+        return `<li class="row${on ? " solved" : ""}" data-id="${pid(p)}">
+    <button class="check" type="button" data-toggle="${pid(p)}" aria-pressed="${on}" aria-label="${on ? "Mark unsolved" : "Mark solved"}: ${esc(p.title)}"></button>
+    <div><a class="ptitle" href="${lcUrl(p)}" target="_blank" rel="noopener">${esc(p.title)}</a>${p.star ? '<span class="star" title="Starred">★</span>' : ""}${p.note ? `<span class="pnote">${esc(p.note)}</span>` : ""}</div>
+    <span class="pid">${p.id}</span>
+  </li>`;
       }
 
       function renderPatterns() {
@@ -3615,43 +3339,43 @@
         const html = [];
         for (const pat of DATA.patterns) {
           const rows = pat.problems.filter((p) => visible(pat, p));
-          if (!rows.length && query) continue;
+          if (!rows.length && (query || filter !== "all")) continue;
           const done = pat.problems.filter(solved).length;
-          html.push(`<section class="card" id="${pat.id}">
-      <div class="kicker">${esc(pat.group)} · ${stars(pat.stars)}</div>
-      <h3>${pat.n}. ${esc(pat.name)}</h3>
-      <div class="meta">${esc(pat.approach)} · ${esc(pat.complexity)} · ${done}/${pat.problems.length} solved</div>
+          const total = pat.problems.length;
+          const facts = [];
+          if (pat.keywords && pat.keywords.length)
+            facts.push(["Signals", pat.keywords.join(", ")]);
+          if (pat.approaches)
+            facts.push(["Also try", pat.approaches.join(", ")]);
+          facts.push(["Time", pat.complexity]);
+          html.push(`<section class="pattern" id="${pat.id}">
+      <h2>${esc(pat.name)}<span class="count${done === total ? " done" : ""}">${done}/${total}</span></h2>
       <p class="idea">${esc(pat.idea)}</p>
-      <div class="tags">${(pat.keywords || []).map((k) => `<span class="tag">${esc(k)}</span>`).join("")}</div>
-      <div class="grid-2">
-        <div class="code-wrap">
-          <button class="copy" type="button">Copy</button>
-          <pre>${esc(pat.template)}</pre>
+      <details class="tpl" data-pat="${pat.id}"${openTemplates.has(pat.id) ? " open" : ""}>
+        <summary>Template</summary>
+        <div class="tpl-body">
+          ${facts.map(([k, v]) => `<p><b>${k}</b> ${esc(v)}</p>`).join("")}
+          <div class="tpl-code"><button class="text-btn copy" type="button">Copy</button><pre>${esc(pat.template)}</pre></div>
         </div>
-        <div class="box">
-          <h4>When to use</h4>
-          ${(pat.keywords || []).map((k) => "• " + esc(k)).join("<br>")}
-          ${pat.approaches ? `<h4 style="margin-top:12px">Approaches</h4>${pat.approaches.map(esc).join(" · ")}` : ""}
-        </div>
-      </div>
-      <div class="problems">
-        ${rows.map(problemRow).join("") || `<p class="empty">No problems match this filter.</p>`}
-      </div>
+      </details>
+      <ul class="problems">${rows.map(problemRow).join("")}</ul>
     </section>`);
         }
-        root.innerHTML = html.join("") || `<p class="empty">No matches.</p>`;
+        root.innerHTML =
+          html.join("") ||
+          `<section class="pattern"><p class="empty">No matching problems.</p></section>`;
       }
 
       function renderRecognize() {
         document.getElementById("recognize-list").innerHTML = DATA.recognize
           .map(
-            ([a, b]) => `<div><span>${esc(a)}</span><b>→ ${esc(b)}</b></div>`,
+            ([a, b]) => `<li><span>${esc(a)}</span><span>${esc(b)}</span></li>`,
           )
           .join("");
         document.getElementById("refs").innerHTML = DATA.links
           .map(
             ([t, u]) =>
-              `<a href="${u}" target="_blank" rel="noopener">${esc(t)}</a>`,
+              `<li><a href="${u}" target="_blank" rel="noopener">${esc(t)}</a></li>`,
           )
           .join("");
       }
@@ -3659,29 +3383,35 @@
       function updateProgress() {
         const all = uniqueProblems();
         const n = all.filter(solved).length;
-        const total = " / " + all.length;
         const pct = all.length ? (100 * n) / all.length : 0;
-        document.getElementById("solved-count").textContent = n;
-        document.getElementById("total-count").textContent = total;
-        document.getElementById("bar").style.width = pct + "%";
-        const deskN = document.getElementById("solved-count-desk");
-        if (deskN) {
-          deskN.textContent = n;
-          document.getElementById("total-count-desk").textContent = total;
-          document.getElementById("bar-desk").style.width = pct + "%";
-        }
+        const set = (sel, fn) => document.querySelectorAll(sel).forEach(fn);
+        set("[data-solved]", (el) => (el.textContent = n));
+        set("[data-total]", (el) => (el.textContent = all.length));
+        set("[data-pct]", (el) => (el.textContent = Math.round(pct) + "%"));
+        set("[data-bar]", (el) => (el.style.width = pct + "%"));
       }
 
       function paintProblem(id) {
         const on = isSolved(id);
         document.querySelectorAll(`.row[data-id="${id}"]`).forEach((row) => {
           row.classList.toggle("solved", on);
-          row.querySelectorAll("[data-toggle]").forEach((btn) => {
-            if (btn.classList.contains("toggle-label"))
-              btn.textContent = on ? "Solved" : "Unsolved";
-            btn.setAttribute("aria-pressed", on);
-          });
+          const btn = row.querySelector("[data-toggle]");
+          btn.setAttribute("aria-pressed", on);
+          btn.setAttribute(
+            "aria-label",
+            btn
+              .getAttribute("aria-label")
+              .replace(/^[^:]+/, on ? "Mark unsolved" : "Mark solved"),
+          );
         });
+        for (const pat of DATA.patterns) {
+          if (!pat.problems.some((p) => pid(p) === id)) continue;
+          const el = document.querySelector(`#${pat.id} .count`);
+          if (!el) continue;
+          const done = pat.problems.filter(solved).length;
+          el.textContent = `${done}/${pat.problems.length}`;
+          el.classList.toggle("done", done === pat.problems.length);
+        }
       }
 
       function render() {
@@ -3690,11 +3420,6 @@
         renderPatterns();
         renderRecognize();
         updateProgress();
-      }
-
-      const sheet = document.getElementById("sheet");
-      function closeSheet() {
-        sheet.classList.remove("open");
       }
 
       document.addEventListener("click", (e) => {
@@ -3708,7 +3433,10 @@
           closeRandom();
           return;
         }
-        if (e.target.closest("#random-btn") || e.target.closest("#random-again")) {
+        if (
+          e.target.closest("#random-btn") ||
+          e.target.closest("#random-again")
+        ) {
           showRandom(pickRandom());
           return;
         }
@@ -3731,23 +3459,14 @@
         }
         const copy = e.target.closest(".copy");
         if (copy) {
-          const pre = copy.parentElement.querySelector("pre");
+          const pre = copy.closest(".tpl-code").querySelector("pre");
           if (pre) navigator.clipboard.writeText(pre.textContent);
           copy.textContent = "Copied";
           setTimeout(() => (copy.textContent = "Copy"), 900);
           return;
         }
-        if (e.target.id === "open-sheet") {
-          sheet.classList.add("open");
-          return;
-        }
-        if (e.target.id === "close-sheet") {
-          closeSheet();
-          return;
-        }
-        const jump = e.target.closest("[data-jump]");
-        if (jump) closeSheet();
-        if (e.target.id === "reset") {
+        const action = e.target.closest("[data-action]")?.dataset.action;
+        if (action === "reset") {
           const scope = syncEnabled ? "everywhere" : "on this device";
           if (confirm(`Clear all solved progress ${scope}?`)) {
             state = {};
@@ -3756,11 +3475,11 @@
           }
           return;
         }
-        if (e.target.id === "sync") {
+        if (action === "sync") {
           enableSync();
           return;
         }
-        if (e.target.id === "export") {
+        if (action === "export") {
           const blob = new Blob([JSON.stringify(state, null, 2)], {
             type: "application/json",
           });
@@ -3770,7 +3489,7 @@
           a.click();
           return;
         }
-        if (e.target.id === "import") {
+        if (action === "import") {
           const inp = document.createElement("input");
           inp.type = "file";
           inp.accept = "application/json";
@@ -3788,6 +3507,17 @@
         }
       });
 
+      document.addEventListener(
+        "toggle",
+        (e) => {
+          const pat = e.target.dataset && e.target.dataset.pat;
+          if (!pat) return;
+          if (e.target.open) openTemplates.add(pat);
+          else openTemplates.delete(pat);
+        },
+        true,
+      );
+
       document.getElementById("q").addEventListener("input", (e) => {
         query = e.target.value.trim().toLowerCase();
         renderPatterns();
@@ -3799,12 +3529,8 @@
         }
         if (e.key === "Escape") {
           closeRandom();
-          closeSheet();
         }
       });
-      if (window.matchMedia("(min-width: 900px)").matches) {
-        document.getElementById("desk-progress").style.display = "block";
-      }
       render();
       loadRemoteProgress();
     </script>
