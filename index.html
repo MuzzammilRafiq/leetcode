@@ -17,7 +17,7 @@
       media="(prefers-color-scheme: dark)"
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>DSA Patterns</title>
+    <title>LeetCode Medium &amp; Hard</title>
     <style>
       :root {
         color-scheme: light dark;
@@ -121,42 +121,32 @@
         color: var(--muted);
       }
 
-      .toc {
-        columns: 2;
-        column-gap: 32px;
-        margin: 36px 0 0;
+      .intro .lede {
+        margin-top: 20px;
         font-size: 14px;
       }
 
-      .toc a {
-        display: flex;
-        gap: 8px;
-        padding: 3px 0;
-        break-inside: avoid;
-        color: var(--muted);
+      .meter {
+        height: 2px;
+        margin-top: 20px;
+        background: var(--line);
+        border-radius: 2px;
+        overflow: hidden;
       }
 
-      .toc a:hover {
-        color: var(--text);
-      }
-
-      .toc .n {
-        margin-left: auto;
-        color: var(--faint);
-        font: 12px/1.9 var(--mono);
-        font-variant-numeric: tabular-nums;
-      }
-
-      .toc a.done,
-      .toc a.done .n {
-        color: var(--text);
+      .meter span {
+        display: block;
+        width: 0;
+        height: 100%;
+        background: var(--text);
+        transition: width 0.3s ease;
       }
 
       .bar {
         position: sticky;
         top: 0;
         z-index: 10;
-        margin-top: 40px;
+        margin-top: 32px;
         background: var(--bg);
         border-bottom: 1px solid var(--line);
       }
@@ -200,105 +190,10 @@
         margin-left: auto;
       }
 
-      /* Patterns */
-
-      .pattern {
-        padding-top: 56px;
-      }
-
-      .pattern h2 {
-        display: flex;
-        align-items: baseline;
-        gap: 12px;
-        margin: 0;
-        font-size: 16px;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-      }
-
-      .count {
-        margin-left: auto;
-        color: var(--faint);
-        font: 400 12px var(--mono);
-        font-variant-numeric: tabular-nums;
-      }
-
-      .count.done {
-        color: var(--text);
-      }
-
-      .idea {
-        margin: 4px 0 0;
-        color: var(--muted);
-        font-size: 14px;
-      }
-
-      .tpl {
-        margin-top: 8px;
-        font-size: 14px;
-      }
-
-      .tpl summary {
-        display: inline;
-        color: var(--faint);
-        cursor: pointer;
-        list-style: none;
-      }
-
-      .tpl summary::-webkit-details-marker {
-        display: none;
-      }
-
-      .tpl summary:hover,
-      .tpl[open] summary {
-        color: var(--text);
-      }
-
-      .tpl summary::after {
-        content: " +";
-      }
-
-      .tpl[open] summary::after {
-        content: " −";
-      }
-
-      .tpl-body {
-        margin-top: 12px;
-        padding: 16px;
-        background: var(--soft);
-        border-radius: 6px;
-      }
-
-      .tpl-body p {
-        margin: 0 0 4px;
-        color: var(--muted);
-      }
-
-      .tpl-body p b {
-        color: var(--text);
-        font-weight: 500;
-      }
-
-      .tpl-code {
-        position: relative;
-        margin-top: 12px;
-      }
-
-      .tpl-code .copy {
-        position: absolute;
-        top: 0;
-        right: 0;
-        font-size: 12px;
-      }
-
-      pre {
-        margin: 0;
-        overflow: auto;
-        font: 12.5px/1.65 var(--mono);
-      }
+      /* Problems */
 
       .problems {
-        margin: 16px 0 0;
+        margin: 24px 0 0;
         padding: 0;
         list-style: none;
       }
@@ -376,38 +271,16 @@
         color: var(--faint);
       }
 
-      .star {
-        color: var(--faint);
-        font-size: 11px;
-        margin-left: 4px;
-      }
-
-      .diff {
+      .time {
         margin-left: 8px;
+        color: var(--muted);
         font-size: 11px;
         letter-spacing: 0.02em;
+        white-space: nowrap;
       }
 
-      .diff-easy {
-        color: #2f9e6b;
-      }
-
-      .diff-medium {
-        color: #c98a12;
-      }
-
-      .diff-hard {
-        color: #d4473f;
-      }
-
-      .row.solved .diff {
+      .row.solved .time {
         opacity: 0.5;
-      }
-
-      .pnote {
-        display: block;
-        color: var(--faint);
-        font-size: 13px;
       }
 
       .pid {
@@ -460,6 +333,62 @@
         content: "−";
       }
 
+      .note {
+        margin: 0 0 20px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .note p {
+        margin: 0 0 10px;
+      }
+
+      .note ul {
+        margin: 0 0 12px;
+        padding-left: 18px;
+      }
+
+      .note li {
+        margin: 0 0 6px;
+      }
+
+      .note a,
+      .ref a {
+        color: var(--text);
+        text-decoration: underline;
+        text-decoration-color: var(--faint);
+        text-underline-offset: 3px;
+      }
+
+      .bands {
+        width: 100%;
+        margin: 4px 0 14px;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+
+      .bands th,
+      .bands td {
+        padding: 5px 0;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        font-weight: 400;
+      }
+
+      .bands th {
+        color: var(--faint);
+      }
+
+      .bands td:last-child,
+      .bands th:last-child {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .bands td:first-child {
+        color: var(--text);
+      }
+
       .ref {
         margin: 0 0 20px;
         padding: 0;
@@ -469,33 +398,13 @@
 
       .ref li {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 140px 1fr;
         gap: 16px;
         padding: 4px 0;
       }
 
-      .ref li span:first-child {
+      .ref li > span:first-child {
         color: var(--muted);
-      }
-
-      ol.ref {
-        columns: 2;
-        column-gap: 32px;
-        list-style: decimal inside;
-        color: var(--faint);
-      }
-
-      ol.ref li {
-        display: list-item;
-        break-inside: avoid;
-      }
-
-      ol.ref a {
-        color: var(--muted);
-      }
-
-      ol.ref a:hover {
-        color: var(--text);
       }
 
       .footer {
@@ -521,14 +430,6 @@
 
       .footer p {
         margin: 16px 0 0;
-      }
-
-      .footer a {
-        color: var(--muted);
-      }
-
-      .footer a:hover {
-        color: var(--text);
       }
 
       .status {
@@ -616,14 +517,6 @@
       }
 
       @media (max-width: 559px) {
-        .toc {
-          columns: 1;
-        }
-
-        ol.ref {
-          columns: 1;
-        }
-
         .ref li {
           grid-template-columns: 1fr;
           gap: 0;
@@ -675,9 +568,14 @@
 
   <body>
     <header class="intro wrap">
-      <h1>DSA Patterns</h1>
+      <h1>LeetCode Medium &amp; Hard</h1>
       <p><span data-solved>0</span> of <span data-total>0</span> solved</p>
-      <nav class="toc" id="toc" aria-label="Patterns"></nav>
+      <p class="lede">
+        The most-asked mediums and hards, shuffled and unlabeled the way an
+        interview serves them. Work top to bottom and try to beat each target
+        time.
+      </p>
+      <div class="meter" aria-hidden="true"><span data-bar></span></div>
     </header>
 
     <div class="bar">
@@ -700,9 +598,6 @@
           <button class="text-btn" data-filter="done" type="button">
             Solved
           </button>
-          <button class="text-btn" data-filter="star" type="button">
-            Starred
-          </button>
         </div>
         <button
           class="text-btn random"
@@ -716,21 +611,238 @@
       </div>
     </div>
 
-    <main class="wrap" id="patterns"></main>
+    <main class="wrap">
+      <ul class="problems" id="problems"></ul>
+    </main>
 
     <div class="wrap">
       <div class="extras">
         <details>
-          <summary>Recognizing patterns</summary>
-          <ul class="ref" id="recognize-list"></ul>
+          <summary>How to use</summary>
+          <div class="note">
+            <ul>
+              <li>
+                Company-tagged sets run roughly 25% easy, 50% medium, 25% hard;
+                Google leans harder (<a
+                  href="https://leetcode.com/discuss/post/7015792/2020-2025-company-wise-dsa-interview-top-redj/"
+                  target="_blank"
+                  rel="noopener"
+                  >LeetCode Discuss</a
+                >).
+              </li>
+              <li>
+                A typical onsite round is 1 hard or 2 mediums, and many reported
+                “hards” are tough mediums (<a
+                  href="https://www.jointaro.com/question/XjQSETsM2qKauJiDQLlu/does-faang-ask-lc-hard-on-onsites/"
+                  target="_blank"
+                  rel="noopener"
+                  >Taro</a
+                >,
+                <a
+                  href="https://www.teamblind.com/post/how-did-you-start-cracking-leetcode-hard-questions-83kwu1xr"
+                  target="_blank"
+                  rel="noopener"
+                  >Blind</a
+                >).
+              </li>
+              <li>
+                Indian product companies do ask hards: a 2026 Zepto SDE-1 round
+                opened with IPO (<a
+                  href="https://leetcode.com/discuss/post/8287428/zepto-sde-1-interview-dsa-round-by-anony-z9nv/"
+                  target="_blank"
+                  rel="noopener"
+                  >LeetCode Discuss</a
+                >).
+              </li>
+            </ul>
+            <p>Target times come from each problem’s acceptance rate:</p>
+            <table class="bands">
+              <thead>
+                <tr><th>Level</th><th>Acceptance</th><th>Target</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Medium</td><td>65% and up</td><td>10–15 min</td></tr>
+                <tr><td>Medium</td><td>40–64%</td><td>15–25 min</td></tr>
+                <tr><td>Medium</td><td>under 40%</td><td>25–30 min</td></tr>
+                <tr><td>Hard</td><td>55% and up</td><td>25–35 min</td></tr>
+                <tr><td>Hard</td><td>35–54%</td><td>35–45 min</td></tr>
+                <tr><td>Hard</td><td>under 35%</td><td>45+ min</td></tr>
+              </tbody>
+            </table>
+            <p>
+              When practising, allow about 1.5× the band before reading hints.
+              Acceptance is a rough proxy: low-rate problems like String to
+              Integer are edge-case heavy, not conceptually hard.
+            </p>
+          </div>
         </details>
         <details>
-          <summary>Master list</summary>
-          <ol class="ref" id="overview"></ol>
-        </details>
-        <details>
-          <summary>Further reading</summary>
-          <ul class="ref" id="refs"></ul>
+          <summary>Sources</summary>
+          <ul class="ref">
+            <li>
+              <span>LeetCode Discuss</span>
+              <span
+                ><a
+                  href="https://leetcode.com/discuss/post/6926452/faang-maang-recent-hard-questions-compil-x4fc/"
+                  target="_blank"
+                  rel="noopener"
+                  >FAANG recent hards</a
+                >,
+                <a
+                  href="https://leetcode.com/discuss/post/7417074/"
+                  target="_blank"
+                  rel="noopener"
+                  >Wrapping up 2025</a
+                >,
+                <a
+                  href="https://leetcode.com/discuss/post/7015792/2020-2025-company-wise-dsa-interview-top-redj/"
+                  target="_blank"
+                  rel="noopener"
+                  >Company-wise difficulty map</a
+                >,
+                <a
+                  href="https://leetcode.com/discuss/post/7575548/most-famous-dsa-questions-for-product-ba-juyf/"
+                  target="_blank"
+                  rel="noopener"
+                  >Product-company favourites</a
+                >,
+                <a
+                  href="https://leetcode.com/discuss/post/8287428/zepto-sde-1-interview-dsa-round-by-anony-z9nv/"
+                  target="_blank"
+                  rel="noopener"
+                  >Zepto SDE-1 round</a
+                ></span
+              >
+            </li>
+            <li>
+              <span>Company frequency</span>
+              <span
+                ><a
+                  href="https://leetcompass.lovable.app/company/amazon"
+                  target="_blank"
+                  rel="noopener"
+                  >Amazon</a
+                >,
+                <a
+                  href="https://leetcompass.lovable.app/company/microsoft"
+                  target="_blank"
+                  rel="noopener"
+                  >Microsoft</a
+                >,
+                <a
+                  href="https://leetcompass.lovable.app/company/meta"
+                  target="_blank"
+                  rel="noopener"
+                  >Meta</a
+                >,
+                <a
+                  href="https://leetcompass.lovable.app/company/apple"
+                  target="_blank"
+                  rel="noopener"
+                  >Apple</a
+                >,
+                <a
+                  href="https://leetcompass.lovable.app/company/bloomberg"
+                  target="_blank"
+                  rel="noopener"
+                  >Bloomberg</a
+                >,
+                <a
+                  href="https://leetcompass.lovable.app/company/tiktok"
+                  target="_blank"
+                  rel="noopener"
+                  >TikTok</a
+                >,
+                <a
+                  href="https://leetcompass.lovable.app/company/flipkart"
+                  target="_blank"
+                  rel="noopener"
+                  >Flipkart</a
+                >,
+                <a
+                  href="https://leetcompass.lovable.app/company/phonepe"
+                  target="_blank"
+                  rel="noopener"
+                  >PhonePe</a
+                >,
+                <a
+                  href="https://leetcompass.lovable.app/company/zeta"
+                  target="_blank"
+                  rel="noopener"
+                  >Zeta</a
+                >,
+                <a
+                  href="https://leetcompass.lovable.app/company/makemytrip"
+                  target="_blank"
+                  rel="noopener"
+                  >MakeMyTrip</a
+                >,
+                <a
+                  href="https://leetcompass.lovable.app/company/zomato"
+                  target="_blank"
+                  rel="noopener"
+                  >Zomato</a
+                ></span
+              >
+            </li>
+            <li>
+              <span>Community</span>
+              <span
+                ><a
+                  href="https://redlib.hbubli.cc/r/leetcode/s/o455d2Zrbj"
+                  target="_blank"
+                  rel="noopener"
+                  >r/leetcode: must-do hards</a
+                >,
+                <a
+                  href="https://www.geeksforgeeks.org/dsa/recently-asked-interview-questions-in-product-based-companies/"
+                  target="_blank"
+                  rel="noopener"
+                  >GfG: recently asked</a
+                ></span
+              >
+            </li>
+            <li>
+              <span>Prep lists</span>
+              <span
+                ><a
+                  href="https://lets-code.co.in/interview/leetcodetop150questions/"
+                  target="_blank"
+                  rel="noopener"
+                  >Top Interview 150</a
+                >,
+                <a
+                  href="https://itsourcecode.com/dsa/top-100-coding-interview-questions-2026/"
+                  target="_blank"
+                  rel="noopener"
+                  >Top 100 (2026)</a
+                >,
+                <a
+                  href="https://www.vervecopilot.com/blog/common-leetcode-questions"
+                  target="_blank"
+                  rel="noopener"
+                  >30 most common</a
+                >,
+                <a
+                  href="https://ad.intervue.io/blog/interview-questions-faang-coding-senior"
+                  target="_blank"
+                  rel="noopener"
+                  >Senior FAANG hards</a
+                ></span
+              >
+            </li>
+            <li>
+              <span>Acceptance data</span>
+              <span
+                ><a
+                  href="https://github.com/noworneverev/leetcode-api"
+                  target="_blank"
+                  rel="noopener"
+                  >noworneverev/leetcode-api</a
+                >, Oct 12, 2026</span
+              >
+            </li>
+          </ul>
         </details>
       </div>
 
@@ -750,16 +862,7 @@
             Reset
           </button>
         </div>
-        <p>
-          From the
-          <a
-            href="https://leetcode.com/discuss/post/8492532/dsa-pattern-wise-master-sheet-by-vishalb-vnx9/"
-            target="_blank"
-            rel="noopener"
-            >DSA Pattern-Wise Master Sheet</a
-          >
-          by Alien_me.
-        </p>
+        <p>186 problems: 126 mediums and 60 hards.</p>
       </footer>
     </div>
 
@@ -789,2563 +892,198 @@
       </div>
     </div>
     <script type="application/json" id="sheet-json">
-      {
-        "master": [
-          [1, "Hashing / Frequency Map", 5],
-          [2, "Two Pointers", 5],
-          [3, "Sliding Window", 5],
-          [4, "Prefix Sum", 5],
-          [5, "Difference Array", 3],
-          [6, "Kadane's Algorithm", 4],
-          [7, "Binary Search", 5],
-          [8, "Binary Search on Answer", 5],
-          [9, "Sorting + Greedy", 5],
-          [10, "Fast & Slow Pointers", 4],
-          [11, "Stack", 5],
-          [12, "Monotonic Stack", 5],
-          [13, "Monotonic Queue / Deque", 4],
-          [14, "Heap / Priority Queue", 5],
-          [15, "Top K Elements", 5],
-          [16, "Merge Intervals", 4],
-          [17, "Cyclic Sort", 4],
-          [18, "Linked List Reversal", 4],
-          [19, "Tree DFS", 5],
-          [20, "Tree BFS", 5],
-          [21, "Tree Construction / Recursion", 4],
-          [22, "BST Patterns", 4],
-          [23, "Graph DFS", 5],
-          [24, "Graph BFS", 5],
-          [25, "Multi-Source BFS", 4],
-          [26, "Topological Sort", 5],
-          [27, "Union Find / DSU", 4],
-          [28, "Shortest Path", 5],
-          [29, "Backtracking", 5],
-          [30, "1D Dynamic Programming", 5],
-          [31, "2D Dynamic Programming", 5],
-          [32, "Knapsack DP", 5],
-          [33, "LCS / String DP", 4],
-          [34, "LIS / Subsequence DP", 4],
-          [35, "Interval DP", 3],
-          [36, "Greedy", 5],
-          [37, "Trie", 4],
-          [38, "Bit Manipulation", 4],
-          [39, "Matrix / Grid", 5],
-          [40, "Divide & Conquer", 4]
-        ],
-        "patterns": [
-          {
-            "id": "two-pointer",
-            "n": 1,
-            "name": "Two Pointer",
-            "group": "Arrays",
-            "stars": 5,
-            "complexity": "O(n log n) after sorting, or O(n) if already sorted",
-            "approach": "Opposite-direction two pointer",
-            "idea": "Move left and right based on whether the current condition is too small or too large.",
-            "keywords": [
-              "sorted array",
-              "pair",
-              "triplet",
-              "closest",
-              "target sum",
-              "maximize / minimize"
-            ],
-            "approaches": [
-              "Two Pointer",
-              "Sorting + Two Pointer",
-              "HashMap",
-              "Binary Search"
-            ],
-            "template": "sort\nleft = 0\nright = n - 1\n\nwhile left < right:\n    check condition\n    move left / right",
-            "problems": [
-              {
-                "id": 11,
-                "title": "Container With Most Water",
-                "slug": "container-with-most-water",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 15,
-                "title": "3Sum",
-                "slug": "3sum",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 16,
-                "title": "3Sum Closest",
-                "slug": "3sum-closest",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 18,
-                "title": "4Sum",
-                "slug": "4sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 167,
-                "title": "Two Sum II",
-                "slug": "two-sum-ii-input-array-is-sorted",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 453,
-                "title": "Minimum Moves to Equal Array Elements",
-                "slug": "minimum-moves-to-equal-array-elements",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 462,
-                "title": "Minimum Moves to Equal Array Elements II",
-                "slug": "minimum-moves-to-equal-array-elements-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 881,
-                "title": "Boats to Save People",
-                "slug": "boats-to-save-people",
-                "difficulty": "Medium",
-                "note": "K-sum pairing pattern"
-              },
-              {
-                "id": 1679,
-                "title": "Max Number of K-Sum Pairs",
-                "slug": "max-number-of-k-sum-pairs",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2491,
-                "title": "Divide Players Into Teams of Equal Skill",
-                "slug": "divide-players-into-teams-of-equal-skill",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2563,
-                "title": "Count the Number of Fair Pairs",
-                "slug": "count-the-number-of-fair-pairs",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2401,
-                "title": "Longest Nice Subarray",
-                "slug": "longest-nice-subarray",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "sliding-window",
-            "n": 2,
-            "name": "Sliding Window",
-            "group": "Arrays",
-            "stars": 5,
-            "complexity": "O(n)",
-            "approach": "Variable-size sliding window",
-            "idea": "Expand right → maintain window state → if invalid, move left → update answer / count. Used for subarrays and substrings: longest, shortest, count, fixed K, at most K, exactly K, frequencies.",
-            "keywords": [
-              "longest substring",
-              "shortest subarray",
-              "at most K",
-              "exactly K",
-              "frequency",
-              "consecutive",
-              "window of size K"
-            ],
-            "template": "left = 0;\n\nfor (int right = 0; right < n; right++) {\n    add(nums[right]);\n\n    while (window_invalid) {\n        remove(nums[left]);\n        left++;\n    }\n\n    update_answer();\n}",
-            "problems": [
-              {
-                "id": 3,
-                "title": "Longest Substring Without Repeating Characters",
-                "slug": "longest-substring-without-repeating-characters",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 209,
-                "title": "Minimum Size Subarray Sum",
-                "slug": "minimum-size-subarray-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 395,
-                "title": "Longest Substring with At Least K Repeating Characters",
-                "slug": "longest-substring-with-at-least-k-repeating-characters",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 424,
-                "title": "Longest Repeating Character Replacement",
-                "slug": "longest-repeating-character-replacement",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 713,
-                "title": "Subarray Product Less Than K",
-                "slug": "subarray-product-less-than-k",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 904,
-                "title": "Fruit Into Baskets",
-                "slug": "fruit-into-baskets",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1004,
-                "title": "Max Consecutive Ones III",
-                "slug": "max-consecutive-ones-iii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1343,
-                "title": "Number of Sub-arrays of Size K and Average ≥ Threshold",
-                "slug": "number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1438,
-                "title": "Longest Continuous Subarray With Absolute Diff ≤ Limit",
-                "slug": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1456,
-                "title": "Maximum Number of Vowels in a Substring of Given Length",
-                "slug": "maximum-number-of-vowels-in-a-substring-of-given-length",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2390,
-                "title": "Removing Stars From a String",
-                "slug": "removing-stars-from-a-string",
-                "difficulty": "Medium",
-                "note": "stack pattern"
-              },
-              {
-                "id": 2405,
-                "title": "Optimal Partition of String",
-                "slug": "optimal-partition-of-string",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2461,
-                "title": "Maximum Sum of Distinct Subarrays With Length K",
-                "slug": "maximum-sum-of-distinct-subarrays-with-length-k",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2958,
-                "title": "Length of Longest Subarray With at Most K Frequency",
-                "slug": "length-of-longest-subarray-with-at-most-k-frequency",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3305,
-                "title": "Count of Substrings Containing Every Vowel and K Consonants I",
-                "slug": "count-of-substrings-containing-every-vowel-and-k-consonants-i",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3306,
-                "title": "Count of Substrings Containing Every Vowel and K Consonants II",
-                "slug": "count-of-substrings-containing-every-vowel-and-k-consonants-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3254,
-                "title": "Find the Power of K-Size Subarrays I",
-                "slug": "find-the-power-of-k-size-subarrays-i",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3255,
-                "title": "Find the Power of K-Size Subarrays II",
-                "slug": "find-the-power-of-k-size-subarrays-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3708,
-                "title": "Longest Fibonacci Subarray",
-                "slug": "longest-fibonacci-subarray",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 4032,
-                "title": "Longest Subarray With at Most K Distinct Prime Factors",
-                "slug": "longest-subarray-with-at-most-k-distinct-prime-factors",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "fixed-window",
-            "n": 3,
-            "name": "Fixed-Size Sliding Window",
-            "group": "Arrays",
-            "stars": 5,
-            "complexity": "O(n)",
-            "approach": "Window size stays exactly K",
-            "idea": "If the window grows past K, drop the leftmost element before scoring.",
-            "keywords": [
-              "window of size K",
-              "subarray of length K",
-              "exactly K"
-            ],
-            "template": "if (right - left + 1 > k)\n    remove(nums[left++]);",
-            "problems": [
-              {
-                "id": 1343,
-                "title": "Number of Sub-arrays of Size K and Average ≥ Threshold",
-                "slug": "number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1456,
-                "title": "Maximum Number of Vowels in a Substring of Given Length",
-                "slug": "maximum-number-of-vowels-in-a-substring-of-given-length",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2090,
-                "title": "K Radius Subarray Averages",
-                "slug": "k-radius-subarray-averages",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3254,
-                "title": "Find the Power of K-Size Subarrays I",
-                "slug": "find-the-power-of-k-size-subarrays-i",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3255,
-                "title": "Find the Power of K-Size Subarrays II",
-                "slug": "find-the-power-of-k-size-subarrays-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2461,
-                "title": "Maximum Sum of Distinct Subarrays With Length K",
-                "slug": "maximum-sum-of-distinct-subarrays-with-length-k",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "hashmap",
-            "n": 4,
-            "name": "HashMap / HashSet",
-            "group": "Arrays",
-            "stars": 5,
-            "complexity": "Average O(n)",
-            "approach": "Frequency map, index map, or existence set",
-            "idea": "Store value → frequency, value → index, prefix → frequency, or character → frequency for O(1) lookup.",
-            "keywords": [
-              "frequency",
-              "duplicate",
-              "count",
-              "occurrence",
-              "lookup",
-              "complement",
-              "last position"
-            ],
-            "template": "unordered_map<int, int> freq;\nfor (int x : nums) freq[x]++;\n\n// existence\nunordered_set<int> seen;\nfor (int x : nums) {\n    if (seen.count(x)) return true;\n    seen.insert(x);\n}",
-            "problems": [
-              {
-                "id": 1,
-                "title": "Two Sum",
-                "slug": "two-sum",
-                "difficulty": "Easy",
-                "star": true
-              },
-              {
-                "id": 128,
-                "title": "Longest Consecutive Sequence",
-                "slug": "longest-consecutive-sequence",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 217,
-                "title": "Contains Duplicate",
-                "slug": "contains-duplicate",
-                "difficulty": "Easy"
-              },
-              {
-                "id": 2195,
-                "title": "Append K Integers With Minimal Sum",
-                "slug": "append-k-integers-with-minimal-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2295,
-                "title": "Replace Elements in an Array",
-                "slug": "replace-elements-in-an-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2442,
-                "title": "Count Number of Distinct Integers After Reverse Operations",
-                "slug": "count-number-of-distinct-integers-after-reverse-operations",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 287,
-                "title": "Find the Duplicate Number",
-                "slug": "find-the-duplicate-number",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 347,
-                "title": "Top K Frequent Elements",
-                "slug": "top-k-frequent-elements",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 451,
-                "title": "Sort Characters By Frequency",
-                "slug": "sort-characters-by-frequency",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 523,
-                "title": "Continuous Subarray Sum",
-                "slug": "continuous-subarray-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 560,
-                "title": "Subarray Sum Equals K",
-                "slug": "subarray-sum-equals-k",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 692,
-                "title": "Top K Frequent Words",
-                "slug": "top-k-frequent-words",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 792,
-                "title": "Number of Matching Subsequences",
-                "slug": "number-of-matching-subsequences",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1657,
-                "title": "Determine if Two Strings Are Close",
-                "slug": "determine-if-two-strings-are-close",
-                "difficulty": "Medium",
-                "note": "frequency pattern"
-              },
-              {
-                "id": 2085,
-                "title": "Count Common Words With One Occurrence",
-                "slug": "count-common-words-with-one-occurrence",
-                "difficulty": "Easy"
-              },
-              {
-                "id": 2958,
-                "title": "Length of Longest Subarray With at Most K Frequency",
-                "slug": "length-of-longest-subarray-with-at-most-k-frequency",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3016,
-                "title": "Minimum Number of Pushes to Type Word II",
-                "slug": "minimum-number-of-pushes-to-type-word-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3305,
-                "title": "Vowels + K Consonants I",
-                "slug": "count-of-substrings-containing-every-vowel-and-k-consonants-i",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3306,
-                "title": "Vowels + K Consonants II",
-                "slug": "count-of-substrings-containing-every-vowel-and-k-consonants-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3747,
-                "title": "Count Distinct Integers After Removing Zeros",
-                "slug": "count-distinct-integers-after-removing-zeros",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3761,
-                "title": "Minimum Absolute Distance Between Mirror Pairs",
-                "slug": "minimum-absolute-distance-between-mirror-pairs",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3889,
-                "title": "Mirror Frequency Distance",
-                "slug": "mirror-frequency-distance",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "prefix-sum",
-            "n": 5,
-            "name": "Prefix Sum",
-            "group": "Arrays",
-            "stars": 5,
-            "complexity": "O(n)",
-            "approach": "Prefix array, or prefix + HashMap",
-            "idea": "For prefix[j] − prefix[i] = target, store prefixes in a HashMap and count complements.",
-            "keywords": [
-              "subarray sum",
-              "range sum",
-              "sum equals K",
-              "divisible by K",
-              "count subarrays"
-            ],
-            "template": "unordered_map<int,int> mp;\nmp[0] = 1;\nint prefix = 0;\n\nfor (int x : nums) {\n    prefix += x;\n    if (mp.count(prefix - k))\n        ans += mp[prefix - k];\n    mp[prefix]++;\n}",
-            "problems": [
-              {
-                "id": 523,
-                "title": "Continuous Subarray Sum",
-                "slug": "continuous-subarray-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 525,
-                "title": "Contiguous Array",
-                "slug": "contiguous-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 560,
-                "title": "Subarray Sum Equals K",
-                "slug": "subarray-sum-equals-k",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 2270,
-                "title": "Number of Ways to Split Array",
-                "slug": "number-of-ways-to-split-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3747,
-                "title": "Count Distinct Integers After Removing Zeros",
-                "slug": "count-distinct-integers-after-removing-zeros",
-                "difficulty": "Medium",
-                "note": "prefix counting"
-              },
-              {
-                "id": 3969,
-                "title": "Valid Subarrays With Matching Sum Digits",
-                "slug": "valid-subarrays-with-matching-sum-digits",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "binary-search",
-            "n": 6,
-            "name": "Binary Search",
-            "group": "Search",
-            "stars": 5,
-            "complexity": "O(log n); binary search on answer is O(n log answer)",
-            "approach": "Halve a monotonic search space",
-            "idea": "The search space is monotonic. Classic: find a position. On-answer: binary search the numeric answer with a can(x) check.",
-            "keywords": [
-              "sorted",
-              "minimum possible",
-              "maximum possible",
-              "first / last",
-              "peak",
-              "rotated",
-              "answer optimization"
-            ],
-            "template": "int l = 0, r = n - 1;\nwhile (l <= r) {\n    int mid = l + (r - l) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) l = mid + 1;\n    else r = mid - 1;\n}",
-            "problems": [
-              {
-                "id": 33,
-                "title": "Search in Rotated Sorted Array",
-                "slug": "search-in-rotated-sorted-array",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 34,
-                "title": "Find First and Last Position of Element in Sorted Array",
-                "slug": "find-first-and-last-position-of-element-in-sorted-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 81,
-                "title": "Search in Rotated Sorted Array II",
-                "slug": "search-in-rotated-sorted-array-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 153,
-                "title": "Find Minimum in Rotated Sorted Array",
-                "slug": "find-minimum-in-rotated-sorted-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 162,
-                "title": "Find Peak Element",
-                "slug": "find-peak-element",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 540,
-                "title": "Single Element in a Sorted Array",
-                "slug": "single-element-in-a-sorted-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 852,
-                "title": "Peak Index in a Mountain Array",
-                "slug": "peak-index-in-a-mountain-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1901,
-                "title": "Find a Peak Element II",
-                "slug": "find-a-peak-element-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2517,
-                "title": "Maximum Tastiness of Candy Basket",
-                "slug": "maximum-tastiness-of-candy-basket",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3720,
-                "title": "Lexicographically Smallest Permutation Greater Than Target",
-                "slug": "lexicographically-smallest-permutation-greater-than-target",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3932,
-                "title": "Count K-th Roots in a Range",
-                "slug": "count-k-th-roots-in-a-range",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "sorting",
-            "n": 7,
-            "name": "Sorting",
-            "group": "Arrays",
-            "stars": 4,
-            "complexity": "O(n log n)",
-            "approach": "Sort first when order simplifies pairing, grouping, or greedy choice",
-            "idea": "Sort first when ordering makes the next decision obvious.",
-            "keywords": [
-              "smallest / largest",
-              "pair / triplet",
-              "frequency ordering",
-              "intervals",
-              "greedy after sorting"
-            ],
-            "template": "sort(nums.begin(), nums.end());\nfor (int x : nums) {\n    if (canTake(x)) choose(x);\n}",
-            "problems": [
-              {
-                "id": 75,
-                "title": "Sort Colors",
-                "slug": "sort-colors",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 912,
-                "title": "Sort an Array",
-                "slug": "sort-an-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 215,
-                "title": "Kth Largest Element in an Array",
-                "slug": "kth-largest-element-in-an-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 347,
-                "title": "Top K Frequent Elements",
-                "slug": "top-k-frequent-elements",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 451,
-                "title": "Sort Characters By Frequency",
-                "slug": "sort-characters-by-frequency",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 692,
-                "title": "Top K Frequent Words",
-                "slug": "top-k-frequent-words",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 324,
-                "title": "Wiggle Sort II",
-                "slug": "wiggle-sort-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2149,
-                "title": "Rearrange Array Elements by Sign",
-                "slug": "rearrange-array-elements-by-sign",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2295,
-                "title": "Replace Elements in an Array",
-                "slug": "replace-elements-in-an-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2491,
-                "title": "Divide Players Into Teams of Equal Skill",
-                "slug": "divide-players-into-teams-of-equal-skill",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2563,
-                "title": "Count the Number of Fair Pairs",
-                "slug": "count-the-number-of-fair-pairs",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3760,
-                "title": "Maximum Substrings With Distinct Start",
-                "slug": "maximum-substrings-with-distinct-start",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3818,
-                "title": "Minimum Prefix Removal",
-                "slug": "minimum-prefix-removal",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "stack",
-            "n": 8,
-            "name": "Stack / Monotonic Stack",
-            "group": "Stack",
-            "stars": 5,
-            "complexity": "Usually O(n)",
-            "approach": "LIFO for matching; monotonic stack for next/previous greater/smaller",
-            "idea": "Use a stack when the previous unmatched element still matters. For next greater/smaller, keep the stack monotonic.",
-            "keywords": [
-              "remove elements",
-              "parentheses",
-              "nested",
-              "monotonic",
-              "next greater",
-              "next smaller"
-            ],
-            "template": "stack<int> st;\nfor (int i = 0; i < n; i++) {\n    while (!st.empty() && nums[st.top()] < nums[i]) {\n        int idx = st.top(); st.pop();\n        // nums[i] is next greater of idx\n    }\n    st.push(i);\n}",
-            "problems": [
-              {
-                "id": 20,
-                "title": "Valid Parentheses",
-                "slug": "valid-parentheses",
-                "difficulty": "Easy",
-                "star": true
-              },
-              {
-                "id": 42,
-                "title": "Trapping Rain Water",
-                "slug": "trapping-rain-water",
-                "difficulty": "Hard",
-                "star": true
-              },
-              {
-                "id": 84,
-                "title": "Largest Rectangle in Histogram",
-                "slug": "largest-rectangle-in-histogram",
-                "difficulty": "Hard",
-                "star": true
-              },
-              {
-                "id": 150,
-                "title": "Evaluate Reverse Polish Notation",
-                "slug": "evaluate-reverse-polish-notation",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 394,
-                "title": "Decode String",
-                "slug": "decode-string",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 402,
-                "title": "Remove K Digits",
-                "slug": "remove-k-digits",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 503,
-                "title": "Next Greater Element II",
-                "slug": "next-greater-element-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 556,
-                "title": "Next Greater Element III",
-                "slug": "next-greater-element-iii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 678,
-                "title": "Valid Parenthesis String",
-                "slug": "valid-parenthesis-string",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 739,
-                "title": "Daily Temperatures",
-                "slug": "daily-temperatures",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 921,
-                "title": "Minimum Add to Make Parentheses Valid",
-                "slug": "minimum-add-to-make-parentheses-valid",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1209,
-                "title": "Remove All Adjacent Duplicates in String II",
-                "slug": "remove-all-adjacent-duplicates-in-string-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1381,
-                "title": "Design a Stack With Increment Operation",
-                "slug": "design-a-stack-with-increment-operation",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2390,
-                "title": "Removing Stars From a String",
-                "slug": "removing-stars-from-a-string",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2104,
-                "title": "Sum of Subarray Ranges",
-                "slug": "sum-of-subarray-ranges",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3746,
-                "title": "Minimum String Length After Balanced Removals",
-                "slug": "minimum-string-length-after-balanced-removals",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "greedy",
-            "n": 9,
-            "name": "Greedy",
-            "group": "Greedy",
-            "stars": 5,
-            "complexity": "Usually O(n) or O(n log n)",
-            "approach": "Best local decision that leads to a global optimum",
-            "idea": "Make the best local decision that can be proven to produce the global optimum — often after sorting.",
-            "keywords": [
-              "minimum operations",
-              "maximum possible",
-              "choose largest / smallest",
-              "scheduling",
-              "intervals",
-              "jumps"
-            ],
-            "template": "sort(items.begin(), items.end());\nfor (auto x : items) {\n    if (canChoose(x)) choose(x);\n}",
-            "problems": [
-              {
-                "id": 45,
-                "title": "Jump Game II",
-                "slug": "jump-game-ii",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 55,
-                "title": "Jump Game",
-                "slug": "jump-game",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 738,
-                "title": "Monotone Increasing Digits",
-                "slug": "monotone-increasing-digits",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 769,
-                "title": "Max Chunks To Make Sorted",
-                "slug": "max-chunks-to-make-sorted",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 846,
-                "title": "Hand of Straights",
-                "slug": "hand-of-straights",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1338,
-                "title": "Reduce Array Size to The Half",
-                "slug": "reduce-array-size-to-the-half",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1481,
-                "title": "Least Number of Unique Integers after K Removals",
-                "slug": "least-number-of-unique-integers-after-k-removals",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2244,
-                "title": "Minimum Rounds to Complete All Tasks",
-                "slug": "minimum-rounds-to-complete-all-tasks",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2870,
-                "title": "Minimum Number of Operations to Make Array Empty",
-                "slug": "minimum-number-of-operations-to-make-array-empty",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3016,
-                "title": "Minimum Number of Pushes to Type Word II",
-                "slug": "minimum-number-of-pushes-to-type-word-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 324,
-                "title": "Wiggle Sort II",
-                "slug": "wiggle-sort-ii",
-                "difficulty": "Medium",
-                "note": "sorting + greedy"
-              },
-              {
-                "id": 3974,
-                "title": "Maximum Total Sum",
-                "slug": "maximum-total-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3979,
-                "title": "Maximum Valid Pair Sum",
-                "slug": "maximum-valid-pair-sum",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "backtracking",
-            "n": 10,
-            "name": "Backtracking",
-            "group": "Recursion",
-            "stars": 5,
-            "complexity": "Usually exponential: O(2ⁿ) / O(n!)",
-            "approach": "choose → explore → undo",
-            "idea": "Build a path, recurse, then undo. Use this when the problem asks for all possibilities.",
-            "keywords": [
-              "all combinations",
-              "all permutations",
-              "all subsets",
-              "generate",
-              "partition",
-              "choose K"
-            ],
-            "template": "function(state):\n    if base_case: record; return\n    choose\n    explore\n    undo",
-            "problems": [
-              {
-                "id": 17,
-                "title": "Letter Combinations of a Phone Number",
-                "slug": "letter-combinations-of-a-phone-number",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 22,
-                "title": "Generate Parentheses",
-                "slug": "generate-parentheses",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 39,
-                "title": "Combination Sum",
-                "slug": "combination-sum",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 40,
-                "title": "Combination Sum II",
-                "slug": "combination-sum-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 46,
-                "title": "Permutations",
-                "slug": "permutations",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 47,
-                "title": "Permutations II",
-                "slug": "permutations-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 77,
-                "title": "Combinations",
-                "slug": "combinations",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 78,
-                "title": "Subsets",
-                "slug": "subsets",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 90,
-                "title": "Subsets II",
-                "slug": "subsets-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 131,
-                "title": "Palindrome Partitioning",
-                "slug": "palindrome-partitioning",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 216,
-                "title": "Combination Sum III",
-                "slug": "combination-sum-iii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 301,
-                "title": "Remove Invalid Parentheses",
-                "slug": "remove-invalid-parentheses",
-                "difficulty": "Hard"
-              },
-              {
-                "id": 491,
-                "title": "Non-decreasing Subsequences",
-                "slug": "non-decreasing-subsequences",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 698,
-                "title": "Partition to K Equal Sum Subsets",
-                "slug": "partition-to-k-equal-sum-subsets",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 784,
-                "title": "Letter Case Permutation",
-                "slug": "letter-case-permutation",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 980,
-                "title": "Unique Paths III",
-                "slug": "unique-paths-iii",
-                "difficulty": "Hard",
-                "note": "grid backtracking"
-              },
-              {
-                "id": 473,
-                "title": "Matchsticks to Square",
-                "slug": "matchsticks-to-square",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "dp",
-            "n": 11,
-            "name": "Dynamic Programming",
-            "group": "DP",
-            "stars": 5,
-            "complexity": "Usually O(n), O(n²), or O(n × target)",
-            "approach": "dp[state] = best / count answer for that state",
-            "idea": "Break the problem into overlapping subproblems. Ask: can today's answer be built from previous answers?",
-            "keywords": [
-              "maximum / minimum",
-              "number of ways",
-              "choose / not choose",
-              "subsequence",
-              "paths",
-              "target sum",
-              "coin"
-            ],
-            "template": "vector<int> dp(n + 1);\ndp[0] = base;\nfor (int i = 1; i <= n; i++) {\n    dp[i] = transition(dp, i);\n}",
-            "problems": [
-              {
-                "id": 62,
-                "title": "Unique Paths",
-                "slug": "unique-paths",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 63,
-                "title": "Unique Paths II",
-                "slug": "unique-paths-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 64,
-                "title": "Minimum Path Sum",
-                "slug": "minimum-path-sum",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 70,
-                "title": "Climbing Stairs",
-                "slug": "climbing-stairs",
-                "difficulty": "Easy",
-                "star": true
-              },
-              {
-                "id": 198,
-                "title": "House Robber",
-                "slug": "house-robber",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 300,
-                "title": "Longest Increasing Subsequence",
-                "slug": "longest-increasing-subsequence",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 322,
-                "title": "Coin Change",
-                "slug": "coin-change",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 377,
-                "title": "Combination Sum IV",
-                "slug": "combination-sum-iv",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 416,
-                "title": "Partition Equal Subset Sum",
-                "slug": "partition-equal-subset-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 494,
-                "title": "Target Sum",
-                "slug": "target-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 518,
-                "title": "Coin Change II",
-                "slug": "coin-change-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 698,
-                "title": "Partition to K Equal Sum Subsets",
-                "slug": "partition-to-k-equal-sum-subsets",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 152,
-                "title": "Maximum Product Subarray",
-                "slug": "maximum-product-subarray",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1749,
-                "title": "Maximum Absolute Sum of Any Subarray",
-                "slug": "maximum-absolute-sum-of-any-subarray",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3693,
-                "title": "Climbing Stairs II",
-                "slug": "climbing-stairs-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3708,
-                "title": "Longest Fibonacci Subarray",
-                "slug": "longest-fibonacci-subarray",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "linked-list",
-            "n": 12,
-            "name": "Linked List",
-            "group": "Linked List",
-            "stars": 4,
-            "complexity": "Usually O(n)",
-            "approach": "Fast & slow, dummy node, reverse, merge, cycle detection",
-            "idea": "Pointer relinking. Dummy heads hide edge cases. Fast/slow finds the middle or a cycle.",
-            "keywords": [
-              "linked list",
-              "cycle",
-              "nth from end",
-              "reverse",
-              "middle",
-              "reorder"
-            ],
-            "template": "ListNode* prev = nullptr;\nListNode* curr = head;\nwhile (curr) {\n    ListNode* next = curr->next;\n    curr->next = prev;\n    prev = curr;\n    curr = next;\n}\nreturn prev;",
-            "problems": [
-              {
-                "id": 2,
-                "title": "Add Two Numbers",
-                "slug": "add-two-numbers",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 19,
-                "title": "Remove Nth Node From End of List",
-                "slug": "remove-nth-node-from-end-of-list",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 24,
-                "title": "Swap Nodes in Pairs",
-                "slug": "swap-nodes-in-pairs",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 82,
-                "title": "Remove Duplicates from Sorted List II",
-                "slug": "remove-duplicates-from-sorted-list-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 92,
-                "title": "Reverse Linked List II",
-                "slug": "reverse-linked-list-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 138,
-                "title": "Copy List with Random Pointer",
-                "slug": "copy-list-with-random-pointer",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 142,
-                "title": "Linked List Cycle II",
-                "slug": "linked-list-cycle-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 143,
-                "title": "Reorder List",
-                "slug": "reorder-list",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 148,
-                "title": "Sort List",
-                "slug": "sort-list",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 206,
-                "title": "Reverse Linked List",
-                "slug": "reverse-linked-list",
-                "difficulty": "Easy",
-                "star": true
-              },
-              {
-                "id": 2095,
-                "title": "Delete the Middle Node of a Linked List",
-                "slug": "delete-the-middle-node-of-a-linked-list",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2130,
-                "title": "Maximum Twin Sum of a Linked List",
-                "slug": "maximum-twin-sum-of-a-linked-list",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 237,
-                "title": "Delete Node in a Linked List",
-                "slug": "delete-node-in-a-linked-list",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2487,
-                "title": "Remove Nodes From Linked List",
-                "slug": "remove-nodes-from-linked-list",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3217,
-                "title": "Delete Nodes From Linked List Present in Array",
-                "slug": "delete-nodes-from-linked-list-present-in-array",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "tree",
-            "n": 13,
-            "name": "Binary Tree / BST",
-            "group": "Trees",
-            "stars": 5,
-            "complexity": "O(n)",
-            "approach": "DFS, BFS, inorder / preorder / postorder, level order",
-            "idea": "DFS for path, depth, subtree. BFS for level, nearest, right side. BST uses left < root < right.",
-            "keywords": [
-              "tree",
-              "level",
-              "depth",
-              "path",
-              "root-to-leaf",
-              "BST",
-              "kth smallest / largest"
-            ],
-            "template": "void dfs(TreeNode* root) {\n    if (!root) return;\n    // process root\n    dfs(root->left);\n    dfs(root->right);\n}",
-            "problems": [
-              {
-                "id": 94,
-                "title": "Binary Tree Inorder Traversal",
-                "slug": "binary-tree-inorder-traversal",
-                "difficulty": "Easy"
-              },
-              {
-                "id": 102,
-                "title": "Binary Tree Level Order Traversal",
-                "slug": "binary-tree-level-order-traversal",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 107,
-                "title": "Binary Tree Level Order Traversal II",
-                "slug": "binary-tree-level-order-traversal-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1161,
-                "title": "Maximum Level Sum of a Binary Tree",
-                "slug": "maximum-level-sum-of-a-binary-tree",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 129,
-                "title": "Sum Root to Leaf Numbers",
-                "slug": "sum-root-to-leaf-numbers",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 222,
-                "title": "Count Complete Tree Nodes",
-                "slug": "count-complete-tree-nodes",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 230,
-                "title": "Kth Smallest Element in a BST",
-                "slug": "kth-smallest-element-in-a-bst",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 2471,
-                "title": "Minimum Number of Operations to Sort a Binary Tree by Level",
-                "slug": "minimum-number-of-operations-to-sort-a-binary-tree-by-level",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2583,
-                "title": "Kth Largest Sum in a Binary Tree",
-                "slug": "kth-largest-sum-in-a-binary-tree",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "graph",
-            "n": 14,
-            "name": "Graph / Grid",
-            "group": "Graphs",
-            "stars": 5,
-            "complexity": "Usually O(V + E) or O(rows × cols)",
-            "approach": "DFS, BFS, flood fill, connected components, matrix traversal",
-            "idea": "Explore neighbors. DFS for components and reachability. BFS for shortest unweighted path.",
-            "keywords": [
-              "islands",
-              "connected",
-              "adjacent",
-              "grid",
-              "province",
-              "path"
-            ],
-            "template": "void dfs(int u) {\n    visited[u] = true;\n    for (int v : graph[u]) {\n        if (!visited[v]) dfs(v);\n    }\n}",
-            "problems": [
-              {
-                "id": 200,
-                "title": "Number of Islands",
-                "slug": "number-of-islands",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 547,
-                "title": "Number of Provinces",
-                "slug": "number-of-provinces",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2471,
-                "title": "Minimum Number of Operations to Sort a Binary Tree by Level",
-                "slug": "minimum-number-of-operations-to-sort-a-binary-tree-by-level",
-                "difficulty": "Medium",
-                "note": "tree as graph"
-              },
-              {
-                "id": 2257,
-                "title": "Count Unguarded Cells in the Grid",
-                "slug": "count-unguarded-cells-in-the-grid",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1901,
-                "title": "Find a Peak Element II",
-                "slug": "find-a-peak-element-ii",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "bits",
-            "n": 15,
-            "name": "Bit Manipulation",
-            "group": "Bits",
-            "stars": 4,
-            "complexity": "Usually O(n × bits) → effectively O(n)",
-            "approach": "XOR identities, masks, lowest-set-bit tricks",
-            "idea": "x ^ x = 0, x ^ 0 = x. Power of two: n > 0 && (n & (n - 1)) == 0.",
-            "keywords": [
-              "XOR",
-              "binary",
-              "bits",
-              "power of two",
-              "single number",
-              "mask",
-              "subset"
-            ],
-            "template": "n & 1              // odd / even\nn >> 1             // divide by 2\nn << 1             // multiply by 2\na ^ b, a & b, a | b, ~a\n\nn | (1 << i)       // set bit\nn & ~(1 << i)      // clear bit\nn & (1 << i)       // check bit\nn & (n - 1)        // drop lowest set bit",
-            "problems": [
-              {
-                "id": 137,
-                "title": "Single Number II",
-                "slug": "single-number-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 260,
-                "title": "Single Number III",
-                "slug": "single-number-iii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 421,
-                "title": "Maximum XOR of Two Numbers in an Array",
-                "slug": "maximum-xor-of-two-numbers-in-an-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 477,
-                "title": "Total Hamming Distance",
-                "slug": "total-hamming-distance",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1318,
-                "title": "Minimum Flips to Make a OR b Equal to c",
-                "slug": "minimum-flips-to-make-a-or-b-equal-to-c",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1780,
-                "title": "Check if Number is a Sum of Powers of Three",
-                "slug": "check-if-number-is-a-sum-of-powers-of-three",
-                "difficulty": "Medium",
-                "note": "base representation"
-              },
-              {
-                "id": 1980,
-                "title": "Find Unique Binary String",
-                "slug": "find-unique-binary-string",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2044,
-                "title": "Count Number of Maximum Bitwise-OR Subsets",
-                "slug": "count-number-of-maximum-bitwise-or-subsets",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2997,
-                "title": "Minimum Number of Operations to Make Array XOR Equal to K",
-                "slug": "minimum-number-of-operations-to-make-array-xor-equal-to-k",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3702,
-                "title": "Longest Subsequence With Non-Zero Bitwise XOR",
-                "slug": "longest-subsequence-with-non-zero-bitwise-xor",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2401,
-                "title": "Longest Nice Subarray",
-                "slug": "longest-nice-subarray",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "string",
-            "n": 16,
-            "name": "String",
-            "group": "Strings",
-            "stars": 4,
-            "complexity": "Usually O(n)",
-            "approach": "Frequency array, HashMap, sliding window, stack, two pointer, string building",
-            "idea": "Most string problems collapse to frequency, window, stack, or two pointers — not ad-hoc character loops.",
-            "keywords": [
-              "substring",
-              "anagram",
-              "palindrome",
-              "lexicographical",
-              "frequency",
-              "partition"
-            ],
-            "template": "// frequency[26] or unordered_map<char,int>\n// then sliding window / two pointers / stack",
-            "problems": [
-              {
-                "id": 3,
-                "title": "Longest Substring Without Repeating Characters",
-                "slug": "longest-substring-without-repeating-characters",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 43,
-                "title": "Multiply Strings",
-                "slug": "multiply-strings",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 151,
-                "title": "Reverse Words in a String",
-                "slug": "reverse-words-in-a-string",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2904,
-                "title": "Shortest and Lexicographically Smallest Beautiful String",
-                "slug": "shortest-and-lexicographically-smallest-beautiful-string",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1839,
-                "title": "Longest Substring Of All Vowels in Order",
-                "slug": "longest-substring-of-all-vowels-in-order",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2405,
-                "title": "Optimal Partition of String",
-                "slug": "optimal-partition-of-string",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2981,
-                "title": "Find Longest Special Substring That Occurs Thrice I",
-                "slug": "find-longest-special-substring-that-occurs-thrice-i",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3016,
-                "title": "Minimum Number of Pushes to Type Word II",
-                "slug": "minimum-number-of-pushes-to-type-word-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3720,
-                "title": "Lexicographically Smallest Permutation Greater Than Target",
-                "slug": "lexicographically-smallest-permutation-greater-than-target",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3746,
-                "title": "Minimum String Length After Balanced Removals",
-                "slug": "minimum-string-length-after-balanced-removals",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3756,
-                "title": "Concatenate Non-Zero Digits and Multiply by Sum II",
-                "slug": "concatenate-non-zero-digits-and-multiply-by-sum-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3760,
-                "title": "Maximum Substrings With Distinct Start",
-                "slug": "maximum-substrings-with-distinct-start",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 4036,
-                "title": "Lexicographically Largest String After Pair Transformations",
-                "slug": "lexicographically-largest-string-after-pair-transformations",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3305,
-                "title": "Vowels + K Consonants I",
-                "slug": "count-of-substrings-containing-every-vowel-and-k-consonants-i",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3306,
-                "title": "Vowels + K Consonants II",
-                "slug": "count-of-substrings-containing-every-vowel-and-k-consonants-ii",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "math",
-            "n": 17,
-            "name": "Math / Number Theory",
-            "group": "Math",
-            "stars": 3,
-            "complexity": "Problem-dependent",
-            "approach": "GCD, LCM, primes, sieve, modulo, fast pow, base conversion",
-            "idea": "Must-know toolkit: GCD, LCM, primes, sieve, modulo, power, binary / hex conversion.",
-            "keywords": [
-              "GCD",
-              "LCM",
-              "prime",
-              "sieve",
-              "modulo",
-              "power",
-              "base conversion"
-            ],
-            "template": "long long gcd(long long a, long long b) {\n    return b ? gcd(b, a % b) : a;\n}\nlong long lcm(long long a, long long b) {\n    return a / gcd(a, b) * b;\n}",
-            "problems": [
-              {
-                "id": 7,
-                "title": "Reverse Integer",
-                "slug": "reverse-integer",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 29,
-                "title": "Divide Two Integers",
-                "slug": "divide-two-integers",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 43,
-                "title": "Multiply Strings",
-                "slug": "multiply-strings",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 172,
-                "title": "Factorial Trailing Zeroes",
-                "slug": "factorial-trailing-zeroes",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 453,
-                "title": "Minimum Moves to Equal Array Elements",
-                "slug": "minimum-moves-to-equal-array-elements",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 462,
-                "title": "Minimum Moves to Equal Array Elements II",
-                "slug": "minimum-moves-to-equal-array-elements-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1780,
-                "title": "Check if Number is a Sum of Powers of Three",
-                "slug": "check-if-number-is-a-sum-of-powers-of-three",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3747,
-                "title": "Count Distinct Integers After Removing Zeros",
-                "slug": "count-distinct-integers-after-removing-zeros",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3932,
-                "title": "Count K-th Roots in a Range",
-                "slug": "count-k-th-roots-in-a-range",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3723,
-                "title": "Maximum Sum of Squares",
-                "slug": "maximum-sum-of-squares",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3974,
-                "title": "Maximum Total Sum",
-                "slug": "maximum-total-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3979,
-                "title": "Maximum Valid Pair Sum",
-                "slug": "maximum-valid-pair-sum",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "heap",
-            "n": 18,
-            "name": "Heap / Priority Queue",
-            "group": "Heap",
-            "stars": 5,
-            "complexity": "Usually O(n log k)",
-            "approach": "For K largest, keep a min-heap of size K",
-            "idea": "Use a heap when you repeatedly need the current min or max, or when you only care about the top K.",
-            "keywords": [
-              "top K",
-              "kth largest",
-              "kth smallest",
-              "most frequent",
-              "continuously select min / max"
-            ],
-            "template": "priority_queue<int, vector<int>, greater<int>> pq; // min heap\nfor (int x : nums) {\n    pq.push(x);\n    if ((int)pq.size() > k) pq.pop();\n}",
-            "problems": [
-              {
-                "id": 215,
-                "title": "Kth Largest Element in an Array",
-                "slug": "kth-largest-element-in-an-array",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 347,
-                "title": "Top K Frequent Elements",
-                "slug": "top-k-frequent-elements",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 692,
-                "title": "Top K Frequent Words",
-                "slug": "top-k-frequent-words",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2583,
-                "title": "Kth Largest Sum in a Binary Tree",
-                "slug": "kth-largest-sum-in-a-binary-tree",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3759,
-                "title": "Count Elements With at Least K Greater Values",
-                "slug": "count-elements-with-at-least-k-greater-values",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3974,
-                "title": "Maximum Total Sum",
-                "slug": "maximum-total-sum",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "prefix-suffix",
-            "n": 19,
-            "name": "Prefix / Suffix",
-            "group": "Arrays",
-            "stars": 4,
-            "complexity": "O(n)",
-            "approach": "Precompute information from the left and from the right",
-            "idea": "Useful when each element needs information from both sides (product except self, split array, etc.).",
-            "keywords": [
-              "prefix[i]",
-              "suffix[i]",
-              "except self",
-              "split",
-              "both sides"
-            ],
-            "template": "vector<long long> pref(n + 1), suff(n + 1);\nfor (int i = 0; i < n; i++) pref[i + 1] = pref[i] + nums[i];\nfor (int i = n - 1; i >= 0; i--) suff[i] = suff[i + 1] + nums[i];",
-            "problems": [
-              {
-                "id": 238,
-                "title": "Product of Array Except Self",
-                "slug": "product-of-array-except-self",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 53,
-                "title": "Maximum Subarray",
-                "slug": "maximum-subarray",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 2270,
-                "title": "Number of Ways to Split Array",
-                "slug": "number-of-ways-to-split-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3121,
-                "title": "Count the Number of Special Characters II",
-                "slug": "count-the-number-of-special-characters-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3818,
-                "title": "Minimum Prefix Removal",
-                "slug": "minimum-prefix-removal",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "interval",
-            "n": 20,
-            "name": "Interval / Range",
-            "group": "Greedy",
-            "stars": 4,
-            "complexity": "O(n log n)",
-            "approach": "Sort by start, then merge or greedily pick",
-            "idea": "Sort by start, compare current with previous, merge or update.",
-            "keywords": [
-              "interval",
-              "range",
-              "overlap",
-              "meeting",
-              "schedule",
-              "merge"
-            ],
-            "template": "sort(intervals.begin(), intervals.end());\nvector<vector<int>> ans;\nfor (auto &cur : intervals) {\n    if (ans.empty() || ans.back()[1] < cur[0])\n        ans.push_back(cur);\n    else\n        ans.back()[1] = max(ans.back()[1], cur[1]);\n}",
-            "problems": [
-              {
-                "id": 56,
-                "title": "Merge Intervals",
-                "slug": "merge-intervals",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 57,
-                "title": "Insert Interval",
-                "slug": "insert-interval",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 986,
-                "title": "Interval List Intersections",
-                "slug": "interval-list-intersections",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1235,
-                "title": "Maximum Profit in Job Scheduling",
-                "slug": "maximum-profit-in-job-scheduling",
-                "difficulty": "Hard",
-                "note": "weighted scheduling"
-              },
-              {
-                "id": 2563,
-                "title": "Count the Number of Fair Pairs",
-                "slug": "count-the-number-of-fair-pairs",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2270,
-                "title": "Number of Ways to Split Array",
-                "slug": "number-of-ways-to-split-array",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "matrix",
-            "n": 21,
-            "name": "Matrix",
-            "group": "Grid",
-            "stars": 5,
-            "complexity": "O(rows × cols)",
-            "approach": "Row/column traversal, spiral, DFS/BFS, matrix binary search, in-place marking",
-            "idea": "Treat the grid as a graph of 4-direction neighbors, or walk boundaries for spiral / rotate.",
-            "keywords": [
-              "matrix",
-              "grid",
-              "island",
-              "neighbors",
-              "4 directions",
-              "spiral",
-              "rotate"
-            ],
-            "template": "int dr[] = {-1, 1, 0, 0};\nint dc[] = {0, 0, -1, 1};\nfor (int d = 0; d < 4; d++) {\n    int nr = r + dr[d], nc = c + dc[d];\n    if (valid(nr, nc)) { /* process */ }\n}",
-            "problems": [
-              {
-                "id": 48,
-                "title": "Rotate Image",
-                "slug": "rotate-image",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 54,
-                "title": "Spiral Matrix",
-                "slug": "spiral-matrix",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 64,
-                "title": "Minimum Path Sum",
-                "slug": "minimum-path-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 73,
-                "title": "Set Matrix Zeroes",
-                "slug": "set-matrix-zeroes",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 74,
-                "title": "Search a 2D Matrix",
-                "slug": "search-a-2d-matrix",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1901,
-                "title": "Find a Peak Element II",
-                "slug": "find-a-peak-element-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 200,
-                "title": "Number of Islands",
-                "slug": "number-of-islands",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 2257,
-                "title": "Count Unguarded Cells in the Grid",
-                "slug": "count-unguarded-cells-in-the-grid",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "recursion",
-            "n": 22,
-            "name": "Recursion",
-            "group": "Recursion",
-            "stars": 4,
-            "complexity": "Matches the search tree: O(2ⁿ) / O(n!)",
-            "approach": "Base case, then choose / undo",
-            "idea": "Same engine as backtracking. Write the state, the base case, then the recursive choices.",
-            "keywords": [
-              "recursive relationship",
-              "subproblem",
-              "divide",
-              "generate"
-            ],
-            "template": "function(state):\n    if base_case: return\n    choose\n    undo",
-            "problems": [
-              {
-                "id": 17,
-                "title": "Letter Combinations of a Phone Number",
-                "slug": "letter-combinations-of-a-phone-number",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 22,
-                "title": "Generate Parentheses",
-                "slug": "generate-parentheses",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 39,
-                "title": "Combination Sum",
-                "slug": "combination-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 40,
-                "title": "Combination Sum II",
-                "slug": "combination-sum-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 46,
-                "title": "Permutations",
-                "slug": "permutations",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 47,
-                "title": "Permutations II",
-                "slug": "permutations-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 77,
-                "title": "Combinations",
-                "slug": "combinations",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 78,
-                "title": "Subsets",
-                "slug": "subsets",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 90,
-                "title": "Subsets II",
-                "slug": "subsets-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 131,
-                "title": "Palindrome Partitioning",
-                "slug": "palindrome-partitioning",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 216,
-                "title": "Combination Sum III",
-                "slug": "combination-sum-iii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 491,
-                "title": "Non-decreasing Subsequences",
-                "slug": "non-decreasing-subsequences",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 698,
-                "title": "Partition to K Equal Sum Subsets",
-                "slug": "partition-to-k-equal-sum-subsets",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 784,
-                "title": "Letter Case Permutation",
-                "slug": "letter-case-permutation",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "monotonic",
-            "n": 23,
-            "name": "Monotonic / Order Patterns",
-            "group": "Stack",
-            "stars": 5,
-            "complexity": "O(n)",
-            "approach": "Monotonic stack or increasing/decreasing window",
-            "idea": "If the statement says monotonic, increasing, or decreasing — think monotonic stack first.",
-            "keywords": [
-              "monotonic",
-              "increasing",
-              "decreasing",
-              "next greater",
-              "next smaller"
-            ],
-            "template": "stack<int> st;\nfor (int i = 0; i < n; i++) {\n    while (!st.empty() && nums[st.top()] < nums[i]) {\n        // next greater\n        st.pop();\n    }\n    st.push(i);\n}",
-            "problems": [
-              {
-                "id": 739,
-                "title": "Daily Temperatures",
-                "slug": "daily-temperatures",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 503,
-                "title": "Next Greater Element II",
-                "slug": "next-greater-element-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 556,
-                "title": "Next Greater Element III",
-                "slug": "next-greater-element-iii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2104,
-                "title": "Sum of Subarray Ranges",
-                "slug": "sum-of-subarray-ranges",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 402,
-                "title": "Remove K Digits",
-                "slug": "remove-k-digits",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 738,
-                "title": "Monotone Increasing Digits",
-                "slug": "monotone-increasing-digits",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1839,
-                "title": "Longest Substring Of All Vowels in Order",
-                "slug": "longest-substring-of-all-vowels-in-order",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2414,
-                "title": "Length of the Longest Alphabetical Continuous Substring",
-                "slug": "length-of-the-longest-alphabetical-continuous-substring",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "xor",
-            "n": 24,
-            "name": "XOR / Prefix XOR",
-            "group": "Bits",
-            "stars": 4,
-            "complexity": "O(n)",
-            "approach": "XOR identities and prefix XOR",
-            "idea": "a ^ a = 0, a ^ 0 = a, a ^ b = b ^ a. Prefix XOR turns range XOR into two lookups.",
-            "keywords": ["XOR", "single number", "appear twice", "prefix XOR"],
-            "template": "a ^ a = 0\na ^ 0 = a\na ^ b = b ^ a",
-            "problems": [
-              {
-                "id": 136,
-                "title": "Single Number",
-                "slug": "single-number",
-                "difficulty": "Easy",
-                "star": true
-              },
-              {
-                "id": 137,
-                "title": "Single Number II",
-                "slug": "single-number-ii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 260,
-                "title": "Single Number III",
-                "slug": "single-number-iii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 421,
-                "title": "Maximum XOR of Two Numbers in an Array",
-                "slug": "maximum-xor-of-two-numbers-in-an-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 477,
-                "title": "Total Hamming Distance",
-                "slug": "total-hamming-distance",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2044,
-                "title": "Count Number of Maximum Bitwise-OR Subsets",
-                "slug": "count-number-of-maximum-bitwise-or-subsets",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2997,
-                "title": "Minimum Number of Operations to Make Array XOR Equal to K",
-                "slug": "minimum-number-of-operations-to-make-array-xor-equal-to-k",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3702,
-                "title": "Longest Subsequence With Non-Zero Bitwise XOR",
-                "slug": "longest-subsequence-with-non-zero-bitwise-xor",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "hash-prefix",
-            "n": 25,
-            "name": "HashMap + Prefix Sum",
-            "group": "Arrays",
-            "stars": 5,
-            "complexity": "O(n)",
-            "approach": "Store prefix frequencies; look up prefix − k",
-            "idea": "This combined pattern is one of the highest-yield interview tricks. Turns O(n²) subarray counting into O(n).",
-            "keywords": [
-              "subarray sum = K",
-              "divisible by K",
-              "nice subarrays",
-              "contiguous 0/1"
-            ],
-            "template": "unordered_map<int,int> mp;\nmp[0] = 1;\nint prefix = 0;\n\nfor (int x : nums) {\n    prefix += x;\n    if (mp.count(prefix - k))\n        ans += mp[prefix - k];\n    mp[prefix]++;\n}",
-            "problems": [
-              {
-                "id": 523,
-                "title": "Continuous Subarray Sum",
-                "slug": "continuous-subarray-sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 525,
-                "title": "Contiguous Array",
-                "slug": "contiguous-array",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 560,
-                "title": "Subarray Sum Equals K",
-                "slug": "subarray-sum-equals-k",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 974,
-                "title": "Subarray Sums Divisible by K",
-                "slug": "subarray-sums-divisible-by-k",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1248,
-                "title": "Count Number of Nice Subarrays",
-                "slug": "count-number-of-nice-subarrays",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "hash-window",
-            "n": 26,
-            "name": "HashMap + Sliding Window",
-            "group": "Arrays",
-            "stars": 5,
-            "complexity": "O(n)",
-            "approach": "Window + frequency map",
-            "idea": "Substring / subarray + frequency + at most K + longest / shortest → sliding window plus HashMap.",
-            "keywords": [
-              "substring / subarray",
-              "frequency",
-              "at most K",
-              "longest / shortest"
-            ],
-            "template": "unordered_map<int,int> freq;\nint left = 0;\nfor (int right = 0; right < n; right++) {\n    freq[nums[right]]++;\n    while (invalid(freq)) {\n        freq[nums[left]]--;\n        if (freq[nums[left]] == 0) freq.erase(nums[left]);\n        left++;\n    }\n    update();\n}",
-            "problems": [
-              {
-                "id": 3,
-                "title": "Longest Substring Without Repeating Characters",
-                "slug": "longest-substring-without-repeating-characters",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 424,
-                "title": "Longest Repeating Character Replacement",
-                "slug": "longest-repeating-character-replacement",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 904,
-                "title": "Fruit Into Baskets",
-                "slug": "fruit-into-baskets",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1004,
-                "title": "Max Consecutive Ones III",
-                "slug": "max-consecutive-ones-iii",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1438,
-                "title": "Longest Continuous Subarray With Absolute Diff ≤ Limit",
-                "slug": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1456,
-                "title": "Maximum Number of Vowels in a Substring of Given Length",
-                "slug": "maximum-number-of-vowels-in-a-substring-of-given-length",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2461,
-                "title": "Maximum Sum of Distinct Subarrays With Length K",
-                "slug": "maximum-sum-of-distinct-subarrays-with-length-k",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2958,
-                "title": "Length of Longest Subarray With at Most K Frequency",
-                "slug": "length-of-longest-subarray-with-at-most-k-frequency",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3305,
-                "title": "Vowels + K Consonants I",
-                "slug": "count-of-substrings-containing-every-vowel-and-k-consonants-i",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3306,
-                "title": "Vowels + K Consonants II",
-                "slug": "count-of-substrings-containing-every-vowel-and-k-consonants-ii",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "sort-greedy",
-            "n": 27,
-            "name": "Sorting + Greedy",
-            "group": "Greedy",
-            "stars": 5,
-            "complexity": "O(n log n)",
-            "approach": "sort → greedy selection",
-            "idea": "If sorting creates an obvious order of decisions, sort first, then pick greedily.",
-            "keywords": [
-              "sort first",
-              "choose smallest / largest",
-              "pair",
-              "hand / consecutive",
-              "reduce size"
-            ],
-            "template": "sort(nums.begin(), nums.end());\nfor (int x : nums) {\n    if (canTake(x)) choose(x);\n}",
-            "problems": [
-              {
-                "id": 846,
-                "title": "Hand of Straights",
-                "slug": "hand-of-straights",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1296,
-                "title": "Divide Array in Sets of K Consecutive Numbers",
-                "slug": "divide-array-in-sets-of-k-consecutive-numbers",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1338,
-                "title": "Reduce Array Size to The Half",
-                "slug": "reduce-array-size-to-the-half",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1481,
-                "title": "Least Number of Unique Integers after K Removals",
-                "slug": "least-number-of-unique-integers-after-k-removals",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1679,
-                "title": "Max Number of K-Sum Pairs",
-                "slug": "max-number-of-k-sum-pairs",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2244,
-                "title": "Minimum Rounds to Complete All Tasks",
-                "slug": "minimum-rounds-to-complete-all-tasks",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2491,
-                "title": "Divide Players Into Teams of Equal Skill",
-                "slug": "divide-players-into-teams-of-equal-skill",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2563,
-                "title": "Count the Number of Fair Pairs",
-                "slug": "count-the-number-of-fair-pairs",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2517,
-                "title": "Maximum Tastiness of Candy Basket",
-                "slug": "maximum-tastiness-of-candy-basket",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 3974,
-                "title": "Maximum Total Sum",
-                "slug": "maximum-total-sum",
-                "difficulty": "Medium"
-              }
-            ]
-          },
-          {
-            "id": "sort-two-pointer",
-            "n": 28,
-            "name": "Sorting + Two Pointer",
-            "group": "Arrays",
-            "stars": 5,
-            "complexity": "O(n log n + n) after sort, then O(n) or O(n²) for k-sum",
-            "approach": "Sort, then opposite-end pointers (k-sum reduces to 2-sum)",
-            "idea": "Fix one (or more) values, then run two pointers on the remainder. Skip duplicates after sorting.",
-            "keywords": ["k-sum", "pair after sort", "closest", "count pairs"],
-            "template": "sort(nums.begin(), nums.end());\nfor (int i = 0; i < n; i++) {\n    int l = i + 1, r = n - 1;\n    while (l < r) { /* move by sum */ }\n}",
-            "problems": [
-              {
-                "id": 15,
-                "title": "3Sum",
-                "slug": "3sum",
-                "difficulty": "Medium",
-                "star": true
-              },
-              {
-                "id": 16,
-                "title": "3Sum Closest",
-                "slug": "3sum-closest",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 18,
-                "title": "4Sum",
-                "slug": "4sum",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 167,
-                "title": "Two Sum II",
-                "slug": "two-sum-ii-input-array-is-sorted",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 1679,
-                "title": "Max Number of K-Sum Pairs",
-                "slug": "max-number-of-k-sum-pairs",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2491,
-                "title": "Divide Players Into Teams of Equal Skill",
-                "slug": "divide-players-into-teams-of-equal-skill",
-                "difficulty": "Medium"
-              },
-              {
-                "id": 2563,
-                "title": "Count the Number of Fair Pairs",
-                "slug": "count-the-number-of-fair-pairs",
-                "difficulty": "Medium"
-              }
-            ]
-          }
-        ],
-        "recognize": [
-          ["sorted + pair / triplet / closest", "Two Pointers"],
-          ["contiguous + longest / shortest / at most K", "Sliding Window"],
-          ["contiguous + sum / range sum / sum = K", "Prefix Sum (+ HashMap)"],
-          ["maximum contiguous sum", "Kadane"],
-          ["sorted + search / first / last / peak / rotated", "Binary Search"],
-          ["minimum possible X / can we finish?", "Binary Search on Answer"],
-          ["frequency / duplicate / group / lookup", "HashMap / HashSet"],
-          ["next greater / next smaller / nearest", "Monotonic Stack"],
-          ["max / min inside a moving window", "Monotonic Queue / Deque"],
-          ["top K / Kth largest / most frequent", "Heap"],
-          ["interval / overlap / meeting / merge", "Sort + Merge / Greedy"],
-          ["linked-list cycle / middle", "Fast & Slow Pointers"],
-          ["tree path / depth / subtree", "Tree DFS"],
-          ["tree level / nearest / right side", "Tree BFS"],
-          ["shortest path, unweighted", "Graph BFS"],
-          ["shortest path, positive weights", "Dijkstra"],
-          ["dependency / prerequisite / order", "Topological Sort"],
-          ["connectivity / union / components", "Union Find / DSU"],
-          ["all combinations / permutations / generate", "Backtracking"],
-          ["answer built from previous answers", "Dynamic Programming"],
-          ["prefix / autocomplete / dictionary", "Trie"],
-          ["XOR / bits / masks / power of two", "Bit Manipulation"]
-        ],
-        "links": [
-          [
-            "Original LeetCode post",
-            "https://leetcode.com/discuss/post/8492532/dsa-pattern-wise-master-sheet-by-vishalb-vnx9/"
-          ],
-          [
-            "Sliding Window Patterns",
-            "https://leetcode.com/discuss/post/1122776/summary-of-sliding-window-patterns-for-subarray-substring/"
-          ],
-          [
-            "Complete Sliding Window Revision",
-            "https://leetcode.com/discuss/post/8444355/sliding-window-patterns-complete-revisio-yhus/"
-          ],
-          [
-            "C++ STL Containers Cheat Sheet",
-            "https://leetcode.com/discuss/post/8446335/c-stl-containers-cheat-sheet-definitions-n76u/"
-          ],
-          [
-            "50+ Useful C++ Functions",
-            "https://leetcode.com/discuss/post/8369186/50-useful-c-functions-by-vishalbhagat185-i2fo/"
-          ]
-        ]
-      }
+      [[1143, "Longest Common Subsequence", "longest-common-subsequence", "15–25"],
+        [45, "Jump Game II", "jump-game-ii", "15–25"],
+        [153, "Find Minimum in Rotated Sorted Array", "find-minimum-in-rotated-sorted-array", "15–25"],
+        [198, "House Robber", "house-robber", "15–25"],
+        [139, "Word Break", "word-break", "15–25"],
+        [438, "Find All Anagrams in a String", "find-all-anagrams-in-a-string", "15–25"],
+        [188, "Best Time to Buy and Sell Stock IV", "best-time-to-buy-and-sell-stock-iv", "35–45"],
+        [417, "Pacific Atlantic Water Flow", "pacific-atlantic-water-flow", "15–25"],
+        [340, "Longest Substring with At Most K Distinct Characters", "longest-substring-with-at-most-k-distinct-characters", "15–25"],
+        [421, "Maximum XOR of Two Numbers in an Array", "maximum-xor-of-two-numbers-in-an-array", "15–25"],
+        [51, "N-Queens", "n-queens", "25–35"],
+        [787, "Cheapest Flights Within K Stops", "cheapest-flights-within-k-stops", "15–25"],
+        [151, "Reverse Words in a String", "reverse-words-in-a-string", "15–25"],
+        [128, "Longest Consecutive Sequence", "longest-consecutive-sequence", "15–25"],
+        [987, "Vertical Order Traversal of a Binary Tree", "vertical-order-traversal-of-a-binary-tree", "35–45"],
+        [992, "Subarrays with K Different Integers", "subarrays-with-k-different-integers", "25–35"],
+        [887, "Super Egg Drop", "super-egg-drop", "45+"],
+        [2402, "Meeting Rooms III", "meeting-rooms-iii", "35–45"],
+        [763, "Partition Labels", "partition-labels", "10–15"],
+        [48, "Rotate Image", "rotate-image", "10–15"],
+        [503, "Next Greater Element II", "next-greater-element-ii", "10–15"],
+        [253, "Meeting Rooms II", "meeting-rooms-ii", "15–25"],
+        [407, "Trapping Rain Water II", "trapping-rain-water-ii", "25–35"],
+        [68, "Text Justification", "text-justification", "35–45"],
+        [721, "Accounts Merge", "accounts-merge", "15–25"],
+        [149, "Max Points on a Line", "max-points-on-a-line", "45+"],
+        [432, "All O`one Data Structure", "all-oone-data-structure", "35–45"],
+        [684, "Redundant Connection", "redundant-connection", "10–15"],
+        [827, "Making A Large Island", "making-a-large-island", "25–35"],
+        [17, "Letter Combinations of a Phone Number", "letter-combinations-of-a-phone-number", "10–15"],
+        [547, "Number of Provinces", "number-of-provinces", "10–15"],
+        [56, "Merge Intervals", "merge-intervals", "15–25"],
+        [155, "Min Stack", "min-stack", "15–25"],
+        [282, "Expression Add Operators", "expression-add-operators", "35–45"],
+        [973, "K Closest Points to Origin", "k-closest-points-to-origin", "10–15"],
+        [1326, "Minimum Number of Taps to Open to Water a Garden", "minimum-number-of-taps-to-open-to-water-a-garden", "35–45"],
+        [297, "Serialize and Deserialize Binary Tree", "serialize-and-deserialize-binary-tree", "25–35"],
+        [332, "Reconstruct Itinerary", "reconstruct-itinerary", "35–45"],
+        [208, "Implement Trie (Prefix Tree)", "implement-trie-prefix-tree", "10–15"],
+        [516, "Longest Palindromic Subsequence", "longest-palindromic-subsequence", "10–15"],
+        [239, "Sliding Window Maximum", "sliding-window-maximum", "35–45"],
+        [131, "Palindrome Partitioning", "palindrome-partitioning", "10–15"],
+        [103, "Binary Tree Zigzag Level Order Traversal", "binary-tree-zigzag-level-order-traversal", "15–25"],
+        [1004, "Max Consecutive Ones III", "max-consecutive-ones-iii", "10–15"],
+        [152, "Maximum Product Subarray", "maximum-product-subarray", "25–30"],
+        [209, "Minimum Size Subarray Sum", "minimum-size-subarray-sum", "15–25"],
+        [76, "Minimum Window Substring", "minimum-window-substring", "35–45"],
+        [78, "Subsets", "subsets", "10–15"],
+        [105, "Construct Binary Tree from Preorder and Inorder Traversal", "construct-binary-tree-from-preorder-and-inorder-traversal", "10–15"],
+        [1011, "Capacity To Ship Packages Within D Days", "capacity-to-ship-packages-within-d-days", "10–15"],
+        [57, "Insert Interval", "insert-interval", "15–25"],
+        [73, "Set Matrix Zeroes", "set-matrix-zeroes", "15–25"],
+        [502, "IPO", "ipo", "35–45"],
+        [424, "Longest Repeating Character Replacement", "longest-repeating-character-replacement", "15–25"],
+        [560, "Subarray Sum Equals K", "subarray-sum-equals-k", "15–25"],
+        [692, "Top K Frequent Words", "top-k-frequent-words", "15–25"],
+        [134, "Gas Station", "gas-station", "15–25"],
+        [621, "Task Scheduler", "task-scheduler", "15–25"],
+        [135, "Candy", "candy", "35–45"],
+        [167, "Two Sum II - Input Array Is Sorted", "two-sum-ii-input-array-is-sorted", "10–15"],
+        [210, "Course Schedule II", "course-schedule-ii", "15–25"],
+        [75, "Sort Colors", "sort-colors", "10–15"],
+        [93, "Restore IP Addresses", "restore-ip-addresses", "15–25"],
+        [142, "Linked List Cycle II", "linked-list-cycle-ii", "15–25"],
+        [295, "Find Median from Data Stream", "find-median-from-data-stream", "25–35"],
+        [124, "Binary Tree Maximum Path Sum", "binary-tree-maximum-path-sum", "35–45"],
+        [65, "Valid Number", "valid-number", "45+"],
+        [735, "Asteroid Collision", "asteroid-collision", "15–25"],
+        [44, "Wildcard Matching", "wildcard-matching", "45+"],
+        [815, "Bus Routes", "bus-routes", "35–45"],
+        [394, "Decode String", "decode-string", "15–25"],
+        [347, "Top K Frequent Elements", "top-k-frequent-elements", "10–15"],
+        [287, "Find the Duplicate Number", "find-the-duplicate-number", "10–15"],
+        [739, "Daily Temperatures", "daily-temperatures", "10–15"],
+        [130, "Surrounded Regions", "surrounded-regions", "15–25"],
+        [4, "Median of Two Sorted Arrays", "median-of-two-sorted-arrays", "35–45"],
+        [39, "Combination Sum", "combination-sum", "10–15"],
+        [1293, "Shortest Path in a Grid with Obstacles Elimination", "shortest-path-in-a-grid-with-obstacles-elimination", "35–45"],
+        [230, "Kth Smallest Element in a BST", "kth-smallest-element-in-a-bst", "10–15"],
+        [25, "Reverse Nodes in k-Group", "reverse-nodes-in-k-group", "25–35"],
+        [173, "Binary Search Tree Iterator", "binary-search-tree-iterator", "10–15"],
+        [102, "Binary Tree Level Order Traversal", "binary-tree-level-order-traversal", "10–15"],
+        [10, "Regular Expression Matching", "regular-expression-matching", "45+"],
+        [875, "Koko Eating Bananas", "koko-eating-bananas", "15–25"],
+        [211, "Design Add and Search Words Data Structure", "design-add-and-search-words-data-structure", "15–25"],
+        [452, "Minimum Number of Arrows to Burst Balloons", "minimum-number-of-arrows-to-burst-balloons", "15–25"],
+        [127, "Word Ladder", "word-ladder", "35–45"],
+        [55, "Jump Game", "jump-game", "15–25"],
+        [846, "Hand of Straights", "hand-of-straights", "15–25"],
+        [853, "Car Fleet", "car-fleet", "15–25"],
+        [895, "Maximum Frequency Stack", "maximum-frequency-stack", "25–35"],
+        [43, "Multiply Strings", "multiply-strings", "15–25"],
+        [301, "Remove Invalid Parentheses", "remove-invalid-parentheses", "35–45"],
+        [62, "Unique Paths", "unique-paths", "10–15"],
+        [460, "LFU Cache", "lfu-cache", "35–45"],
+        [50, "Pow(x, n)", "powx-n", "25–30"],
+        [8, "String to Integer (atoi)", "string-to-integer-atoi", "25–30"],
+        [42, "Trapping Rain Water", "trapping-rain-water", "25–35"],
+        [399, "Evaluate Division", "evaluate-division", "15–25"],
+        [221, "Maximal Square", "maximal-square", "15–25"],
+        [15, "3Sum", "3sum", "15–25"],
+        [207, "Course Schedule", "course-schedule", "15–25"],
+        [2, "Add Two Numbers", "add-two-numbers", "15–25"],
+        [41, "First Missing Positive", "first-missing-positive", "35–45"],
+        [84, "Largest Rectangle in Histogram", "largest-rectangle-in-histogram", "35–45"],
+        [53, "Maximum Subarray", "maximum-subarray", "15–25"],
+        [227, "Basic Calculator II", "basic-calculator-ii", "15–25"],
+        [33, "Search in Rotated Sorted Array", "search-in-rotated-sorted-array", "15–25"],
+        [37, "Sudoku Solver", "sudoku-solver", "25–35"],
+        [213, "House Robber II", "house-robber-ii", "15–25"],
+        [31, "Next Permutation", "next-permutation", "15–25"],
+        [199, "Binary Tree Right Side View", "binary-tree-right-side-view", "10–15"],
+        [162, "Find Peak Element", "find-peak-element", "15–25"],
+        [85, "Maximal Rectangle", "maximal-rectangle", "25–35"],
+        [863, "All Nodes Distance K in Binary Tree", "all-nodes-distance-k-in-binary-tree", "10–15"],
+        [126, "Word Ladder II", "word-ladder-ii", "45+"],
+        [322, "Coin Change", "coin-change", "15–25"],
+        [410, "Split Array Largest Sum", "split-array-largest-sum", "25–35"],
+        [92, "Reverse Linked List II", "reverse-linked-list-ii", "15–25"],
+        [123, "Best Time to Buy and Sell Stock III", "best-time-to-buy-and-sell-stock-iii", "35–45"],
+        [215, "Kth Largest Element in an Array", "kth-largest-element-in-an-array", "10–15"],
+        [632, "Smallest Range Covering Elements from K Lists", "smallest-range-covering-elements-from-k-lists", "25–35"],
+        [22, "Generate Parentheses", "generate-parentheses", "10–15"],
+        [273, "Integer to English Words", "integer-to-english-words", "35–45"],
+        [567, "Permutation in String", "permutation-in-string", "15–25"],
+        [380, "Insert Delete GetRandom O(1)", "insert-delete-getrandom-o1", "15–25"],
+        [354, "Russian Doll Envelopes", "russian-doll-envelopes", "35–45"],
+        [40, "Combination Sum II", "combination-sum-ii", "15–25"],
+        [435, "Non-overlapping Intervals", "non-overlapping-intervals", "15–25"],
+        [64, "Minimum Path Sum", "minimum-path-sum", "10–15"],
+        [132, "Palindrome Partitioning II", "palindrome-partitioning-ii", "35–45"],
+        [90, "Subsets II", "subsets-ii", "15–25"],
+        [494, "Target Sum", "target-sum", "15–25"],
+        [743, "Network Delay Time", "network-delay-time", "15–25"],
+        [150, "Evaluate Reverse Polish Notation", "evaluate-reverse-polish-notation", "15–25"],
+        [300, "Longest Increasing Subsequence", "longest-increasing-subsequence", "15–25"],
+        [994, "Rotting Oranges", "rotting-oranges", "15–25"],
+        [11, "Container With Most Water", "container-with-most-water", "15–25"],
+        [2385, "Amount of Time for Binary Tree to Be Infected", "amount-of-time-for-binary-tree-to-be-infected", "10–15"],
+        [5, "Longest Palindromic Substring", "longest-palindromic-substring", "25–30"],
+        [224, "Basic Calculator", "basic-calculator", "35–45"],
+        [79, "Word Search", "word-search", "15–25"],
+        [74, "Search a 2D Matrix", "search-a-2d-matrix", "15–25"],
+        [315, "Count of Smaller Numbers After Self", "count-of-smaller-numbers-after-self", "35–45"],
+        [518, "Coin Change II", "coin-change-ii", "15–25"],
+        [238, "Product of Array Except Self", "product-of-array-except-self", "10–15"],
+        [329, "Longest Increasing Path in a Matrix", "longest-increasing-path-in-a-matrix", "25–35"],
+        [189, "Rotate Array", "rotate-array", "15–25"],
+        [678, "Valid Parenthesis String", "valid-parenthesis-string", "15–25"],
+        [98, "Validate Binary Search Tree", "validate-binary-search-tree", "25–30"],
+        [416, "Partition Equal Subset Sum", "partition-equal-subset-sum", "15–25"],
+        [212, "Word Search II", "word-search-ii", "35–45"],
+        [49, "Group Anagrams", "group-anagrams", "10–15"],
+        [862, "Shortest Subarray with Sum at Least K", "shortest-subarray-with-sum-at-least-k", "45+"],
+        [767, "Reorganize String", "reorganize-string", "15–25"],
+        [46, "Permutations", "permutations", "10–15"],
+        [218, "The Skyline Problem", "the-skyline-problem", "35–45"],
+        [140, "Word Break II", "word-break-ii", "25–35"],
+        [3, "Longest Substring Without Repeating Characters", "longest-substring-without-repeating-characters", "15–25"],
+        [32, "Longest Valid Parentheses", "longest-valid-parentheses", "35–45"],
+        [36, "Valid Sudoku", "valid-sudoku", "10–15"],
+        [236, "Lowest Common Ancestor of a Binary Tree", "lowest-common-ancestor-of-a-binary-tree", "10–15"],
+        [1235, "Maximum Profit in Job Scheduling", "maximum-profit-in-job-scheduling", "35–45"],
+        [133, "Clone Graph", "clone-graph", "10–15"],
+        [480, "Sliding Window Median", "sliding-window-median", "35–45"],
+        [981, "Time Based Key-Value Store", "time-based-key-value-store", "15–25"],
+        [19, "Remove Nth Node From End of List", "remove-nth-node-from-end-of-list", "15–25"],
+        [34, "Find First and Last Position of Element in Sorted Array", "find-first-and-last-position-of-element-in-sorted-array", "15–25"],
+        [143, "Reorder List", "reorder-list", "10–15"],
+        [269, "Alien Dictionary", "alien-dictionary", "35–45"],
+        [54, "Spiral Matrix", "spiral-matrix", "15–25"],
+        [146, "LRU Cache", "lru-cache", "15–25"],
+        [312, "Burst Balloons", "burst-balloons", "25–35"],
+        [200, "Number of Islands", "number-of-islands", "10–15"],
+        [443, "String Compression", "string-compression", "15–25"],
+        [336, "Palindrome Pairs", "palindrome-pairs", "35–45"],
+        [23, "Merge k Sorted Lists", "merge-k-sorted-lists", "25–35"],
+        [403, "Frog Jump", "frog-jump", "35–45"],
+        [91, "Decode Ways", "decode-ways", "25–30"],
+        [148, "Sort List", "sort-list", "10–15"],
+        [1192, "Critical Connections in a Network", "critical-connections-in-a-network", "25–35"],
+        [138, "Copy List with Random Pointer", "copy-list-with-random-pointer", "15–25"],
+        [114, "Flatten Binary Tree to Linked List", "flatten-binary-tree-to-linked-list", "10–15"],
+        [402, "Remove K Digits", "remove-k-digits", "25–30"],
+        [72, "Edit Distance", "edit-distance", "15–25"],
+        [647, "Palindromic Substrings", "palindromic-substrings", "10–15"]]
     </script>
     <script>
-      const DATA = JSON.parse(
+      // [id, title, slug, target minutes]
+      const PROBLEMS = JSON.parse(
         document.getElementById("sheet-json").textContent,
-      );
+      ).map(([id, title, slug, time]) => ({ id, title, slug, time }));
       const KEY = "dsa-pattern-sheet-v1";
       const UPDATED_KEY = KEY + "-updated-at";
       let state = {};
@@ -3524,16 +1262,7 @@
         save();
       }
       function lcUrl(p) {
-        if (p.slug) return "https://leetcode.com/problems/" + p.slug + "/";
-        return (
-          "https://leetcode.com/problemset/?search=" + encodeURIComponent(p.id)
-        );
-      }
-      function uniqueProblems() {
-        const m = new Map();
-        for (const pat of DATA.patterns)
-          for (const p of pat.problems) m.set(pid(p), p);
-        return [...m.values()];
+        return "https://leetcode.com/problems/" + p.slug + "/";
       }
       function esc(s) {
         return String(s).replace(
@@ -3548,63 +1277,28 @@
             })[c],
         );
       }
-      function matchQuery(pat, p) {
-        if (!query) return true;
-        const blob = (
-          pat.name +
-          " " +
-          p.title +
-          " " +
-          p.id +
-          " " +
-          (p.note || "") +
-          " " +
-          (p.difficulty || "") +
-          " " +
-          (pat.keywords || []).join(" ")
-        ).toLowerCase();
-        return blob.includes(query);
-      }
-      function visible(pat, p) {
-        if (!matchQuery(pat, p)) return false;
+      function visible(p) {
+        if (query && !(p.title + " " + p.id).toLowerCase().includes(query))
+          return false;
         if (filter === "todo") return !solved(p);
         if (filter === "done") return solved(p);
-        if (filter === "star") return !!p.star;
         return true;
       }
       function selectionLabel() {
         if (filter === "todo") return "Unsolved";
         if (filter === "done") return "Solved";
-        if (filter === "star") return "Starred";
         return "All";
       }
-      function matchingPool() {
-        const m = new Map();
-        for (const pat of DATA.patterns) {
-          for (const p of pat.problems) {
-            if (!visible(pat, p)) continue;
-            const id = pid(p);
-            if (!m.has(id)) {
-              m.set(id, { p, patterns: [pat], star: !!p.star });
-            } else {
-              const entry = m.get(id);
-              entry.patterns.push(pat);
-              entry.star = entry.star || !!p.star;
-            }
-          }
-        }
-        return [...m.values()];
-      }
       function pickRandom() {
-        const pool = matchingPool();
+        const pool = PROBLEMS.filter(visible);
         if (!pool.length) return null;
         let choices = pool;
         if (pool.length > 1 && lastRandomId) {
-          const rest = pool.filter((x) => pid(x.p) !== lastRandomId);
+          const rest = pool.filter((p) => pid(p) !== lastRandomId);
           if (rest.length) choices = rest;
         }
         const pick = choices[Math.floor(Math.random() * choices.length)];
-        lastRandomId = pid(pick.p);
+        lastRandomId = pid(pick);
         return pick;
       }
       function closeRandom() {
@@ -3648,8 +1342,6 @@
             meta.textContent = "No solved problems yet.";
           } else if (filter === "todo") {
             meta.textContent = "No unsolved problems left.";
-          } else if (filter === "star") {
-            meta.textContent = "No starred problems in this view.";
           } else {
             meta.textContent = "No problems to pick.";
           }
@@ -3667,159 +1359,39 @@
         title.textContent = "";
         const idEl = document.createElement("span");
         idEl.className = "pid";
-        idEl.textContent = pick.p.id;
-        title.append(idEl, document.createTextNode(pick.p.title));
-        if (pick.star) {
-          const starEl = document.createElement("span");
-          starEl.className = "star";
-          starEl.textContent = "  ★";
-          title.append(starEl);
-        }
-        const pats = [...new Set(pick.patterns.map((pat) => pat.name))].join(
-          " · ",
-        );
+        idEl.textContent = pick.id;
+        title.append(idEl, document.createTextNode(pick.title));
         meta.textContent = [
-          pick.p.difficulty,
-          pats,
-          solved(pick.p) ? "Solved" : "Unsolved",
-        ]
-          .filter(Boolean)
-          .join(" · ");
-        open.href = lcUrl(pick.p);
+          `Target ${pick.time} min`,
+          solved(pick) ? "Solved" : "Unsolved",
+        ].join(" · ");
+        open.href = lcUrl(pick);
         sheetEl.classList.add("open");
-        highlightPick(pid(pick.p));
-      }
-      function renderOverview() {
-        const jump = {
-          1: "hashmap",
-          2: "two-pointer",
-          3: "sliding-window",
-          4: "prefix-sum",
-          5: "prefix-sum",
-          6: "prefix-suffix",
-          7: "binary-search",
-          8: "binary-search",
-          9: "sort-greedy",
-          10: "linked-list",
-          11: "stack",
-          12: "stack",
-          13: "sliding-window",
-          14: "heap",
-          15: "heap",
-          16: "interval",
-          17: "hashmap",
-          18: "linked-list",
-          19: "tree",
-          20: "tree",
-          21: "tree",
-          22: "tree",
-          23: "graph",
-          24: "graph",
-          25: "graph",
-          26: "graph",
-          27: "graph",
-          28: "graph",
-          29: "backtracking",
-          30: "dp",
-          31: "dp",
-          32: "dp",
-          33: "dp",
-          34: "dp",
-          35: "dp",
-          36: "greedy",
-          37: "string",
-          38: "bits",
-          39: "matrix",
-          40: "recursion",
-        };
-        document.getElementById("overview").innerHTML = DATA.master
-          .map(
-            ([n, name, s]) =>
-              `<li><a href="#${jump[n] || "two-pointer"}">${esc(name)}</a></li>`,
-          )
-          .join("");
-      }
-
-      function renderNav() {
-        document.getElementById("toc").innerHTML = DATA.patterns
-          .map((pat) => {
-            const done = pat.problems.filter(solved).length;
-            const total = pat.problems.length;
-            return `<a href="#${pat.id}"${done === total ? ' class="done"' : ""}>${esc(pat.name)}<span class="n">${done}/${total}</span></a>`;
-          })
-          .join("");
-      }
-
-      const openTemplates = new Set();
-
-      function diffTag(p) {
-        if (!p.difficulty) return "";
-        return `<span class="diff diff-${p.difficulty.toLowerCase()}">${p.difficulty}</span>`;
+        highlightPick(pid(pick));
       }
 
       function problemRow(p) {
         const on = solved(p);
         return `<li class="row${on ? " solved" : ""}" data-id="${pid(p)}">
     <button class="check" type="button" data-toggle="${pid(p)}" aria-pressed="${on}" aria-label="${on ? "Mark unsolved" : "Mark solved"}: ${esc(p.title)}"></button>
-    <div><a class="ptitle" href="${lcUrl(p)}" target="_blank" rel="noopener">${esc(p.title)}</a>${p.star ? '<span class="star" title="Starred">★</span>' : ""}${diffTag(p)}${p.note ? `<span class="pnote">${esc(p.note)}</span>` : ""}</div>
+    <div><a class="ptitle" href="${lcUrl(p)}" target="_blank" rel="noopener">${esc(p.title)}</a><span class="time" title="Target time">${p.time} min</span></div>
     <span class="pid">${p.id}</span>
   </li>`;
       }
 
-      function renderPatterns() {
-        const root = document.getElementById("patterns");
-        const html = [];
-        for (const pat of DATA.patterns) {
-          const rows = pat.problems.filter((p) => visible(pat, p));
-          if (!rows.length && (query || filter !== "all")) continue;
-          const done = pat.problems.filter(solved).length;
-          const total = pat.problems.length;
-          const facts = [];
-          if (pat.keywords && pat.keywords.length)
-            facts.push(["Signals", pat.keywords.join(", ")]);
-          if (pat.approaches)
-            facts.push(["Also try", pat.approaches.join(", ")]);
-          facts.push(["Time", pat.complexity]);
-          html.push(`<section class="pattern" id="${pat.id}">
-      <h2>${esc(pat.name)}<span class="count${done === total ? " done" : ""}">${done}/${total}</span></h2>
-      <p class="idea">${esc(pat.idea)}</p>
-      <details class="tpl" data-pat="${pat.id}"${openTemplates.has(pat.id) ? " open" : ""}>
-        <summary>Template</summary>
-        <div class="tpl-body">
-          ${facts.map(([k, v]) => `<p><b>${k}</b> ${esc(v)}</p>`).join("")}
-          <div class="tpl-code"><button class="text-btn copy" type="button">Copy</button><pre>${esc(pat.template)}</pre></div>
-        </div>
-      </details>
-      <ul class="problems">${rows.map(problemRow).join("")}</ul>
-    </section>`);
-        }
-        root.innerHTML =
-          html.join("") ||
-          `<section class="pattern"><p class="empty">No matching problems.</p></section>`;
-      }
-
-      function renderRecognize() {
-        document.getElementById("recognize-list").innerHTML = DATA.recognize
-          .map(
-            ([a, b]) => `<li><span>${esc(a)}</span><span>${esc(b)}</span></li>`,
-          )
-          .join("");
-        document.getElementById("refs").innerHTML = DATA.links
-          .map(
-            ([t, u]) =>
-              `<li><a href="${u}" target="_blank" rel="noopener">${esc(t)}</a></li>`,
-          )
-          .join("");
+      function renderProblems() {
+        const rows = PROBLEMS.filter(visible);
+        document.getElementById("problems").innerHTML = rows.length
+          ? rows.map(problemRow).join("")
+          : `<li class="empty">No matching problems.</li>`;
       }
 
       function updateProgress() {
-        const all = uniqueProblems();
-        const n = all.filter(solved).length;
-        const pct = all.length ? (100 * n) / all.length : 0;
+        const n = PROBLEMS.filter(solved).length;
+        const pct = PROBLEMS.length ? (100 * n) / PROBLEMS.length : 0;
         const set = (sel, fn) => document.querySelectorAll(sel).forEach(fn);
         set("[data-solved]", (el) => (el.textContent = n));
-        set("[data-total]", (el) => (el.textContent = all.length));
-        set("[data-pct]", (el) => (el.textContent = Math.round(pct) + "%"));
+        set("[data-total]", (el) => (el.textContent = PROBLEMS.length));
         set("[data-bar]", (el) => (el.style.width = pct + "%"));
       }
 
@@ -3836,21 +1408,10 @@
               .replace(/^[^:]+/, on ? "Mark unsolved" : "Mark solved"),
           );
         });
-        for (const pat of DATA.patterns) {
-          if (!pat.problems.some((p) => pid(p) === id)) continue;
-          const el = document.querySelector(`#${pat.id} .count`);
-          if (!el) continue;
-          const done = pat.problems.filter(solved).length;
-          el.textContent = `${done}/${pat.problems.length}`;
-          el.classList.toggle("done", done === pat.problems.length);
-        }
       }
 
       function render() {
-        renderOverview();
-        renderNav();
-        renderPatterns();
-        renderRecognize();
+        renderProblems();
         updateProgress();
       }
 
@@ -3861,7 +1422,7 @@
           document
             .querySelectorAll("[data-filter]")
             .forEach((c) => c.classList.toggle("on", c === chip));
-          renderPatterns();
+          renderProblems();
           closeRandom();
           return;
         }
@@ -3883,18 +1444,9 @@
         if (tog) {
           const id = tog.dataset.toggle;
           setSolved(id, !isSolved(id));
-          if (filter !== "all" || query) renderPatterns();
+          if (filter !== "all" || query) renderProblems();
           else paintProblem(id);
-          renderNav();
           updateProgress();
-          return;
-        }
-        const copy = e.target.closest(".copy");
-        if (copy) {
-          const pre = copy.closest(".tpl-code").querySelector("pre");
-          if (pre) navigator.clipboard.writeText(pre.textContent);
-          copy.textContent = "Copied";
-          setTimeout(() => (copy.textContent = "Copy"), 900);
           return;
         }
         const action = e.target.closest("[data-action]")?.dataset.action;
@@ -3917,7 +1469,7 @@
           });
           const a = document.createElement("a");
           a.href = URL.createObjectURL(blob);
-          a.download = "dsa-pattern-progress.json";
+          a.download = "leetcode-progress.json";
           a.click();
           return;
         }
@@ -3939,20 +1491,9 @@
         }
       });
 
-      document.addEventListener(
-        "toggle",
-        (e) => {
-          const pat = e.target.dataset && e.target.dataset.pat;
-          if (!pat) return;
-          if (e.target.open) openTemplates.add(pat);
-          else openTemplates.delete(pat);
-        },
-        true,
-      );
-
       document.getElementById("q").addEventListener("input", (e) => {
         query = e.target.value.trim().toLowerCase();
-        renderPatterns();
+        renderProblems();
       });
       document.addEventListener("keydown", (e) => {
         if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
